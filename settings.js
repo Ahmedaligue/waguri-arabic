@@ -35,7 +35,7 @@ global.libreria = 'Baileys'
 global.baileys = 'V 6.7.17' 
 global.vs = '2.2.5'
 global.nameqr = '⚽️ Isagi-Yoichi-MD ⚽️'
-global.namebot = 'I S A G I Y O I C H I B O T'
+global.namebot = 'Yuno bot'
 global.sessions = 'Sessions'
 global.jadi = 'JadiBots' 
 
@@ -43,10 +43,10 @@ global.jadi = 'JadiBots'
 //*─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─*
 
 global.packname = '⚽️ 𝐼𝑆𝐴𝐺𝐼 𝑌𝑂𝐼𝐶𝐻𝐼 𝐵𝑂𝑇 ⚽️'
-global.botname = '† ɪsᴀɢɪ ʏᴏɪᴄʜɪ †'
+global.botname = 'Yuno bot'
 global.wm = '⚽️◟𝓘𝓼𝓪𝓰𝓲 𝓨𝓸𝓲𝓬𝓱𝓲◞⚽️'
 global.author = '© DuarteXV'
-global.dev = '© 🄿🄾🅆🄴🅁🄴🄳 DuarteXV'
+global.dev = '© 🄿🄾🅆🄴🅁🄴🄳 Rufino'
 global.textbot = '🏆Isagi Yoichi, Un delantero que transforma cada partido en una partida de ajedrez con su mente letal. ♟️⚽🏆'
 global.etiqueta = '⚽️DuarteXV⚽️'
 
