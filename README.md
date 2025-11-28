@@ -1,5 +1,7 @@
 # Waguri Bot 🌸
 
+![Waguri Bot](https://qu.ax/DzYWi.jpg)
+
 > **Nota importante:** ⚠️ No disponible en Termux aún.
 
 Un bot para WhatsApp con esencia floral y un toque mágico. Waguri Bot está diseñado para hacer tus conversaciones más especiales con funciones útiles y encantadoras.
