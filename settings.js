@@ -54,9 +54,7 @@ global.etiqueta = ''
 
 global.moneda = 'Waguricoins'
 global.welcom1 = '! Bienvenido a este jardin! 🌷 \n✨ Soy Waguri Bot✨ \n🌷 Edita este mensaje con setwelcome 🌸'
-global.welcom2 = '💗 ¡
-Waguri Bot te despide con calma.  
-Que tu camino florezca en sabiduría. 🌸! \n🌸 Edita este mensaje con setbye 🌸'
+global.welcom2 ='Waguri Bot te despide con calma,Que tu camino florezca en sabiduría. 🌸! \n🌸 Edita este mensaje con setbye 🌸'
 global.banner = 'https://files.catbox.moe/l8qiik.jpeg'
 global.avatar = 'https://files.catbox.moe/h4vif1.jpeg'
 
