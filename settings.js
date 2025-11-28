@@ -10,14 +10,14 @@ import moment from 'moment-timezone'
 //*─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─*
 
 
-global.botNumber = '240555285007' 
+global.botNumber = '' 
 
 //*─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─*
 
 global.owner = [
 // <-- Número @s.whatsapp.net -->
-['18094374392', 'Felix ofc', true],
-['240555285007', 'Rufino ✝️', true],
+['573244642273', 'DuarteXV, true],
+['240222646582', 'Rufino ✝️', true],
   
 // <-- Número @lid -->
   ['', '210200699113555', true]
@@ -26,7 +26,7 @@ global.owner = [
 //*─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─*
 
 global.mods = []
-global.suittag = ['573244642273'] 
+global.suittag = ['240222646582'] 
 global.prems = []
 
 //*─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─*
@@ -43,18 +43,20 @@ global.jadi = 'JadiBots'
 //*─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─*
 
 global.packname = 'Waguri-Bot-MD'
-global.botname = 'Yuno bot'
-global.wm = '⚽️◟𝓘𝓼𝓪𝓰𝓲 𝓨𝓸𝓲𝓬𝓱𝓲◞⚽️'
-global.author = '© DuarteXV'
+global.botname = '⟡ 𝐖𝐚𝐠𝐮𝐫𝐢 𝐁𝐨𝐭 ⟡'
+global.wm = '💗𝕎𝕒𝕘𝕦𝕣𝕚 𝔹𝕠𝕥💗'
+global.author = '© Rufino'
 global.dev = '© 🄿🄾🅆🄴🅁🄴🄳 Rufino'
 global.textbot = '🏆Isagi Yoichi, Un delantero que transforma cada partido en una partida de ajedrez con su mente letal. ♟️⚽🏆'
-global.etiqueta = 'Rufino✝️'
+global.etiqueta = ''
 
 //*─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─*
 
-global.moneda = 'Blue-Lock-Points'
-global.welcom1 = '! Bienvenido al campo! ⚽️ \n✨ Soy Isagi Yoichi ✨ \n⚽️ Edita este mensaje con setwelcome ⚽️'
-global.welcom2 = '💫 ¡Hasta la próxima! Gracias por jugar con nosotros 🌟 \n⚽️ ¡Esperamos verte pronto en el campo! ⚽️ \n🔥 Edita este mensaje con setbye 🔥'
+global.moneda = 'Waguricoins'
+global.welcom1 = '! Bienvenido a este jardin! 🌷 \n✨ Soy Waguri Bot✨ \n🌷 Edita este mensaje con setwelcome 🌸'
+global.welcom2 = '💗 ¡
+Waguri Bot te despide con calma.  
+Que tu camino florezca en sabiduría. 🌸! \n🌸 Edita este mensaje con setbye 🌸'
 global.banner = 'https://files.catbox.moe/l8qiik.jpeg'
 global.avatar = 'https://files.catbox.moe/h4vif1.jpeg'
 
@@ -101,7 +103,7 @@ global.rcanal = {
     forwardedNewsletterMessageInfo: { 
       newsletterJid: "120363350523130615@newsletter", 
       serverMessageId: 100, 
-      newsletterName: "⚽️🔥Isagi-Yoichi-Bot ⚽️🔥"
+      newsletterName: "🌸WAGURI-BOT-MD"
     }
   }
 }
@@ -109,9 +111,9 @@ global.rcanal = {
 
 global.redes = 'https://whatsapp.com/channel/0029Vb6stJ2HwXb40WXDyn1U'
 global.dev = '© 🄿🄾🅆🄴🅁🄴🄳 Rufino '
-global.emoji = '✝️'
-global.emoji2 = '🏆'
-global.emoji3 = '🔥'
+global.emoji = '💗'
+global.emoji2 = '🌸'
+global.emoji3 = '🌷'
 
 //*─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─*
 
