@@ -5,7 +5,7 @@ const creatorsList = [
     { 
       id: 'owner1',
       name: 'Rufino✝️', 
-      number: '5217225305296',
+      number: '240222646582',
       rango: 'Creador de la bot'
     },
     { 
@@ -17,7 +17,7 @@ const creatorsList = [
     { 
       id: 'owner3',
       name: 'Anderson', 
-      number: '573114910796',
+      number: '51933000214',
       rango: 'Desarrollador Principal y Corregidor de Errores'
     },
 ]
