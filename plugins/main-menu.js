@@ -1,4 +1,3 @@
-//by Ander
 import fetch from 'node-fetch'
 
 const channelId = '120363423258391692@newsletter'
@@ -50,7 +49,6 @@ let handler = async (m, { conn }) => {
 ✧˖°⊹ ─────────────── ⊹°˖✧
 `.trim()
 
-  // Enviar la imagen con el menú como pie de foto
   await conn.sendMessage(m.chat, {
     image: { url: menuImage },
     caption: txt,
@@ -62,15 +60,7 @@ let handler = async (m, { conn }) => {
         newsletterName: channelName,
         serverMessageId: -1,
       },
-      forwardingScore: 1,
-      externalAdReply: {
-        title: botname,
-        body: dev,
-        thumbnailUrl: banner,
-        sourceUrl: redes,
-        mediaType: 1,
-        renderLargerThumbnail: true,
-      },
+      forwardingScore: 1
     },
   }, { quoted: m })
 }
