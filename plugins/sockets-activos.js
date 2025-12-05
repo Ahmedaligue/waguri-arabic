@@ -32,7 +32,7 @@ let handler = async (m, { conn }) => {
 
   // Obtener nombre principal (del bot que envía)
   const mainJid = mainBotConn.user?.jid || conn.user?.jid
-  let mainName = readSessionName(mainJid) || mainBotConn.user?.name || 'Yotsuba Nakano'
+  let mainName = readSessionName(mainJid) || mainBotConn.user?.name || 'Waguri Bot🌸'
 
   if (mainBotConn.chats && mainBotConn.chats[m.chat]) {
     botsEnGrupo++
