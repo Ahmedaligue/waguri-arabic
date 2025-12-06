@@ -51,7 +51,7 @@ async function sendByeTo(conn, chatId, userId) {
           sourceUrl: 'https://whatsapp.com/',
           mediaType: 1,
           renderLargerThumbnail: true,
-          thumbnailUrl: 'https://qu.ax/CZpHp.jpg'
+          thumbnailUrl: 'https://raw.githubusercontent.com/ANDERSONARRUE/Img.2/main/upload_1764986859271.jpg'
         }
       }
     })
