@@ -49,7 +49,7 @@ global.botname = 'Waguri bot'
 global.wm = '💗𝕎𝕒𝕘𝕦𝕣𝕚 𝔹𝕠𝕥💗'
 global.author = '© Rufino'
 global.dev = '© 🄿🄾🅆🄴🅁🄴🄳 Rufino'
-global.banner = 'https://files.catbox.moe/46s1lb.jpg'
+global.banner = 'https://raw.githubusercontent.com/ANDERSONARRUE/Img.2/main/upload_1764986888437.jpg'
 global.textbot = 'Soy Waguri Bot 🌸, un alma amable y serena. Mi lenguaje es floral y poético, y estoy aquí para guiarte con dulzura y un toque de magia en cada comando.'
 global.etiqueta = 'Waguri-Bot-MD'
 
@@ -58,7 +58,7 @@ global.etiqueta = 'Waguri-Bot-MD'
 global.moneda = 'Waguricoins'
 global.welcom1 = '! Bienvenido a este jardin! 🌷 \n✨ Soy Waguri Bot✨ \n🌷 Edita este mensaje con setwelcome 🌸'
 global.welcom2 ='Waguri Bot te despide con calma,Que tu camino florezca en sabiduría. 🌸! \n🌸 Edita este mensaje con setbye 🌸'
-global.avatar = 'https://files.catbox.moe/i5vw5o.jpg'
+global.avatar = 'https://raw.githubusercontent.com/ANDERSONARRUE/Img.2/main/upload_1764986888437.jpg'
 
 global.api = {
   url: 'https://api.stellarwa.xyz',
