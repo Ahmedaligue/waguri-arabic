@@ -9,6 +9,6 @@ async function hablarConGemini(mensaje) {
 }
 
 // Ejemplo de uso
-hablarConGemini("Hola, dime algo interesante")
+hablarConGemini("Hola, dime algo")
     .then(respuesta => console.log(respuesta))
     .catch(error => console.error("Error:", error));
