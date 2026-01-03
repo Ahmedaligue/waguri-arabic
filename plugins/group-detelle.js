@@ -13,7 +13,7 @@ return conn.sendMessage(m.chat, { delete: m.quoted.key })
 
 handler.help = ['delete']
 handler.tags = ['grupo']
-handler.command = ['del', 'delete']
+handler.command = ['del']
 handler.group = true
 handler.admin = true
 handler.botAdmin = true
