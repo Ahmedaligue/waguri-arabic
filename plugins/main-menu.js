@@ -89,7 +89,9 @@ menciana a todos los usuarios
 ❀ /doxear
 > simula un doxeo
 ❀ /facto
-> tira un facto aleatorio 
+> tira un facto aleatorio
+❀ /piropo
+> tira un piropo
 ✧˖°⊹ ─────────────── ⊹°˖✧
 `.trim()
 
@@ -123,6 +125,7 @@ function clockString(ms) {
   return `${hours}h ${minutes}m ${seconds}s`
 
 }
+
 
 
 
