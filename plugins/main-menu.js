@@ -31,45 +31,45 @@ let handler = async (m, { conn }) => {
 > descarta a un usuario como admin 
 ❀ /join
 > el bot se une a otro
-❀/quitar prefijo
+❀ /quitar prefijo
 > quita el prefijo de comandos 
-❀/update
+❀ /update
 > actulizar bot
 ❀ /setprefijo
 > poner prefijo de comandos 
-❀/bots
+❀ /bots
 > ver listo de subbots 
-❀/delprimary 
+❀ /delprimary 
 > elimina el bot primario 
-❀/delprimary2
+❀ /delprimary2
 > elimina al segundo bot primario 
-❀/leave
+❀ /leave
 > salir de un grupo 
-❀/logotipo
+❀ /logotipo
 > poner logo
-❀/reload
+❀ /reload
 > reactivar el bot
-❀/setbanner
+❀ /setbanner
 > poner banner 
 ❀ /setcurrency
 > poner moneda 
-❀/setname
+❀ /setname
 > poner nombre 
 ❀ /setprimary
 > elegir bot primario 
-❀/tag
+❀ /tag
 menciana a todos los usuarios 
-❀/play
+❀ /play
 > descarga audio de YouTube 
-❀/play2
+❀ /play2
 > descarga video de YouTube 
-❀/invocar
+❀ /invocar
 > invocar al grupo 
-❀/sticker
+❀ /sticker
 > hacer sticker
-❀/kick
+❀ /kick
 > elimina a un usuario 
-❀/waguri
+❀ /waguri
 > habla con la iA waguri 
 ❀ /Pinterest
 > descarga archivos de pinterest 
@@ -118,5 +118,6 @@ function clockString(ms) {
   return `${hours}h ${minutes}m ${seconds}s`
 
 }
+
 
 
