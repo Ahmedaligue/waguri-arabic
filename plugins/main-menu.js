@@ -84,7 +84,11 @@ menciana a todos los usuarios
 ❀ /antilink
 > anti enlace 
 ❀ /tiktoksearch
-> busca un vídeo de tiktok 
+> busca un vídeo de tiktok
+❀ /del
+> elimina un mensaje
+❀ /reg
+> regístrate en el bot
           🌸 𝐅𝐔𝐍 🌸
 ❀ /doxear
 > simula un doxeo
