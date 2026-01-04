@@ -92,6 +92,10 @@ menciana a todos los usuarios
 > tira un facto aleatorio
 ❀ /piropo
 > tira un piropo
+❀ /reto 
+> el bot te reta
+❀ /top <texto>
+> top 10 de una categoría 
 ✧˖°⊹ ─────────────── ⊹°˖✧
 `.trim()
 
@@ -125,6 +129,7 @@ function clockString(ms) {
   return `${hours}h ${minutes}m ${seconds}s`
 
 }
+
 
 
 
