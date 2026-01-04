@@ -96,6 +96,10 @@ menciana a todos los usuarios
 > el bot te reta
 ❀ /top <texto>
 > top 10 de una categoría 
+❀ /iqtest
+> el bot hace un test de tu iq
+❀ /gey <usuario>
+> el bot muestra a un gay
 ✧˖°⊹ ─────────────── ⊹°˖✧
 `.trim()
 
@@ -129,6 +133,7 @@ function clockString(ms) {
   return `${hours}h ${minutes}m ${seconds}s`
 
 }
+
 
 
 
