@@ -120,8 +120,6 @@ let handler = async (m, { conn }) => {
 ❀ /sleep  
 > Dormir
        🌸 *IA* 🌸
-❀ /waguri  
-> Hablar con waguri iA
 ❀ /copilot  
 > habla con copilot 
 ❀ /gemini  
@@ -178,6 +176,41 @@ let handler = async (m, { conn }) => {
 > muestra stats detalladas
 ❀ /inventario  
 > revisa tu equipo disponible
+
+       🌸 *ECONOMÍA* 🌸
+
+❀ /balance  
+> Ver tu saldo actual
+❀ /daily  
+> Reclamar recompensa diaria
+❀ /trabajar  
+> Realiza un trabajo para ganar monedas
+❀ /trabajos  
+> Ver lista de trabajos disponibles
+❀ /aceptartrabajo  
+> Aceptar un trabajo de la lista
+❀ /renunciar  
+> Renunciar a tu trabajo actual
+❀ /casino  
+> Accede al casino para apostar
+❀ /tienda  
+> Ver la tienda de objetos disponibles
+❀ /comprar  
+> Comprar un objeto de la tienda
+❀ /vender  
+> Vender un objeto del inventario
+❀ /items  
+> Ver tus objetos e inventario
+❀ /usar  
+> Usar un objeto del inventario
+❀ /loteria  
+> Participar en la lotería
+❀ /topcoins  
+> Ver el ranking de usuarios con más monedas
+❀ /pay  
+> Enviar monedas a otro usuario
+❀ /economia  
+> Ver tus estadísticas económicas
   
 ✧˖°⊹ ─────────────── ⊹°˖✧
 `.trim()
