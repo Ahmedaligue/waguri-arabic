@@ -138,8 +138,7 @@ let handler = async (m, { conn }) => {
 ❀ /APK
 > descarga una aplicación
 ❀ /pin
-> descargar archivos de pinterest 
-     
+> descargar archivos de pinterest      
 ✧˖°⊹ ─────────────── ⊹°˖✧
 `.trim()
 
