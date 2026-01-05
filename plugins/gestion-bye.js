@@ -9,7 +9,7 @@ import { WAMessageStubType } from '@whiskeysockets/baileys'
 // Función para obtener nombre y estandarte del bot según la sesión/config
 function getBotConfig(conn) {
   let nombreBot = typeof botname !== 'undefined' ? botname : 'Waguri Bot'
-  let bannerFinal = 'https://raw.githubusercontent.com/ANDERSONARRUE/Img.2/main/upload_1764986859271.jpg'
+  let bannerFinal = 'https://cdn.hostrta.win/fl/85rm.jpg'
 
   const botActual = conn.user?.jid?.split('@')[0]?.replace(/\D/g, '')
   const configPath = join('./JadiBots', botActual || '', 'config.json')
