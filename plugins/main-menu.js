@@ -22,7 +22,7 @@ let handler = async (m, { conn }) => {
 ˚ ♡ ⋆｡˚ Usuarios ⟢ ${totalreg}
 ˚ ♡ ⋆｡˚ Biblioteca ⟢ Baileys
 ✧˖°⊹ ─────────────── ⊹°˖✧
-
+      🌸*HERRAMIENTAS*🌸
 ❀ /autoadmin
 > hace admin al bot
 ❀ /ping
@@ -58,33 +58,15 @@ let handler = async (m, { conn }) => {
 ❀ /setprimary
 > elegir bot primario 
 ❀ /tag
-menciana a todos los usuarios 
-❀ /play
-> descarga audio de YouTube 
-❀ /play2
-> descarga video de YouTube 
+menciana a todos los usuarios 
 ❀ /invocar
 > invocar al grupo 
 ❀ /sticker
 > hacer sticker
 ❀ /kick
-> elimina a un usuario 
-❀ /waguri
-> habla con la iA waguri 
-❀ /Pinterest
-> descarga archivos de pinterest 
-❀ /gemini
-> habla con gemini 
-❀ /copilot
-> habla con copilot 
-❀ /apk
-> descarga una aplicación 
-❀ /ig
-> descarga archivos de Instagram 
+> elimina a un usuario  
 ❀ /antilink
 > anti enlace 
-❀ /tiktoksearch
-> busca un vídeo de tiktok
 ❀ /del
 > elimina un mensaje
 ❀ /reg
@@ -136,7 +118,28 @@ menciana a todos los usuarios
 ❀ /slap  
 > Dar una cachetada
 ❀ /sleep  
-> Dormir     
+> Dormir
+       🌸 *IA* 🌸
+❀ /waguri  
+> Hablar con waguri iA
+❀ /copilot  
+> habla con copilot 
+❀ /gemini  
+> habla con gemini
+     🌸 *DESCARGAS* 🌸
+❀ /play  
+> Descargar música desde YouTube  
+❀ /play2  
+> Descargar videos desde YouTube  
+❀ /tiktoksearch  
+> Buscar contenido en TikTok para descargar
+❀ /ig
+> descarga archivos de Instagram
+❀ /APK
+> descarga una aplicación
+❀ /pin
+> descargar archivos de pinterest 
+     
 ✧˖°⊹ ─────────────── ⊹°˖✧
 `.trim()
 
