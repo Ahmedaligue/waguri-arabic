@@ -58,7 +58,7 @@ let handler = async (m, { conn }) => {
 ❀ /setprimary
 > elegir bot primario 
 ❀ /tag
-menciana a todos los usuarios 
+> menciana a todos los usuarios 
 ❀ /invocar
 > invocar al grupo 
 ❀ /sticker
