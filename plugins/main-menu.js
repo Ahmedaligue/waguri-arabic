@@ -140,7 +140,45 @@ let handler = async (m, { conn }) => {
 ❀ /APK
 > descarga una aplicación
 ❀ /pin
-> descargar archivos de pinterest      
+> descargar archivos de pinterest 
+           🌸 *RPG* 🌸
+❀ /cazar  
+> inicia una misión de caza
+❀ /contratos  
+> muestra contratos especiales
+❀ /aceptar <id>  
+> acepta un contrato del tablero
+❀ /completar  
+> completa el contrato activo
+❀ /perfil  
+> muestra tus estadísticas
+❀ /diario  
+> reclama recompensa diaria
+❀ /minar  
+> mina criptomonedas
+❀ /transferir @usuario cantidad  
+> envía créditos a otro jugador
+❀ /taller  
+> abre la tienda de mejoras
+❀ /comprar <objeto>  
+> compra un ítem del taller
+❀ /comprar.boy <objeto>  
+> compra un objeto especial
+❀ /item  
+> muestra información de un objeto
+❀ /vender <objeto>  
+> vende un ítem de tu inventario
+❀ /duelo @usuario  
+> reta a un duelo pvp
+❀ /hack  
+> hackea sistemas para ganar recompensas
+❀ /best  
+> ranking de mejores jugadores
+❀ /estadisticas  
+> muestra stats detalladas
+❀ /inventario  
+> revisa tu equipo disponible
+  
 ✧˖°⊹ ─────────────── ⊹°˖✧
 `.trim()
 
