@@ -22,7 +22,7 @@ let handler = async (m, { conn }) => {
 ˚ ♡ ⋆｡˚ Usuarios ⟢ ${totalreg}
 ˚ ♡ ⋆｡˚ Biblioteca ⟢ Baileys
 ✧˖°⊹ ─────────────── ⊹°˖✧
-      🌸*HERRAMIENTAS*🌸
+      🌸 *HERRAMIENTAS* 🌸
 ❀ /autoadmin
 > hace admin al bot
 ❀ /ping
