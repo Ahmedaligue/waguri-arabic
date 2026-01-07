@@ -27,7 +27,22 @@ async function fetchWithFallback(urls) {
   throw new Error('Todas las APIs fallaron')
 }
 
-const handler = async (m, { conn, text, command }) => {
+const handler = async (m, { conn, text, command, usedPrefix }) => {
+  // Verificar si el usuario está registrado
+  const user = global.db.data.users[m.sender];
+  if (!user || !user.registered) {
+    await conn.sendMessage(m.chat, { react: { text: "🔒", key: m.key } });
+    return conn.reply(m.chat, 
+      `🔒 *REGISTRO REQUERIDO* 🔒\n\n` +
+      `Para usar el comando *${command}* necesitas estar registrado.\n\n` +
+      `📋 *Regístrate con:*\n` +
+      `${usedPrefix}reg nombre.edad\n\n` +
+      `*Ejemplo:* ${usedPrefix}reg ${conn.getName(m.sender) || 'Usuario'}.18\n\n` +
+      `¡Regístrate para descargar música y videos de YouTube! 🎵`,
+      m
+    );
+  }
+
   const filePath = getFilePath(m.chat)
   if (fs.existsSync(filePath)) {
     let db = JSON.parse(fs.readFileSync(filePath))
@@ -35,7 +50,18 @@ const handler = async (m, { conn, text, command }) => {
   }
 
   try {
-    if (!text.trim()) return conn.reply(m.chat, `🌸 Por favor, ingresa el nombre de la música a descargar.`, m)
+    if (!text.trim()) {
+      await conn.sendMessage(m.chat, { react: { text: "❌", key: m.key } });
+      return conn.reply(m.chat, 
+        `🌸 *DESCARGAS DE YOUTUBE* 🌸\n\n` +
+        `Por favor, ingresa el nombre de la música o el enlace de YouTube.\n\n` +
+        `📝 *Ejemplos:*\n` +
+        `${usedPrefix}play Bad Bunny\n` +
+        `${usedPrefix}ytmp4 https://youtu.be/...\n` +
+        `${usedPrefix}playaudio nombre de canción`,
+        m
+      )
+    }
 
     let videoIdToFind = text.match(youtubeRegexID)
     let ytSearch = await yts(videoIdToFind ? 'https://youtu.be/' + videoIdToFind[1] : text)
@@ -46,7 +72,10 @@ const handler = async (m, { conn, text, command }) => {
     }
 
     ytSearch = ytSearch.all?.[0] || ytSearch.videos?.[0] || ytSearch
-    if (!ytSearch || ytSearch.length === 0) return m.reply('✧ No se encontraron resultados para tu búsqueda.')
+    if (!ytSearch || ytSearch.length === 0) {
+      await conn.sendMessage(m.chat, { react: { text: "❌", key: m.key } });
+      return m.reply('✧ No se encontraron resultados para tu búsqueda.')
+    }
 
     let { title, thumbnail, timestamp, views, ago, url, author } = ytSearch
     const vistas = formatViews(views)
@@ -84,6 +113,8 @@ const handler = async (m, { conn, text, command }) => {
       },
     }
 
+    // Enviar reacción de procesando
+    await conn.sendMessage(m.chat, { react: { text: "⏳", key: m.key } });
     await conn.reply(m.chat, infoMessage, m, JT)
 
     const audioAPIs = [
@@ -98,7 +129,10 @@ const handler = async (m, { conn, text, command }) => {
 
     if (['play', 'yta', 'ytmp3', 'playaudio'].includes(command)) {
       try {
+        await conn.sendMessage(m.chat, { react: { text: "🔍", key: m.key } });
         const data = await fetchWithFallback(audioAPIs)
+        // Enviar reacción de éxito
+        await conn.sendMessage(m.chat, { react: { text: "✅", key: m.key } });
         await conn.sendMessage(m.chat, {
           audio: { url: data.url },
           fileName: `${data.title || 'audio'}.mp3`,
@@ -106,17 +140,22 @@ const handler = async (m, { conn, text, command }) => {
           ptt: false
         }, { quoted: m })
       } catch (e) {
+        await conn.sendMessage(m.chat, { react: { text: "❌", key: m.key } });
         return conn.reply(m.chat, `🌸 ¡Fallo en la descarga de audio! ${e.message}`, m)
       }
     } else if (['play2', 'ytv', 'ytmp4'].includes(command)) {
       try {
+        await conn.sendMessage(m.chat, { react: { text: "🔍", key: m.key } });
         const data = await fetchWithFallback(videoAPIs)
+        // Enviar reacción de éxito
+        await conn.sendMessage(m.chat, { react: { text: "✅", key: m.key } });
         await conn.sendMessage(m.chat, {
           video: { url: data.url },
           fileName: `${data.title || 'video'}.mp4`,
           mimetype: 'video/mp4'
         }, { quoted: m })
       } catch (e) {
+        await conn.sendMessage(m.chat, { react: { text: "❌", key: m.key } });
         return conn.reply(m.chat, `🌸 ¡Fallo en la descarga de video! ${e.message}`, m)
       }
     } else {
@@ -124,6 +163,7 @@ const handler = async (m, { conn, text, command }) => {
     }
 
   } catch (error) {
+    await conn.sendMessage(m.chat, { react: { text: "❌", key: m.key } });
     return m.reply(`⚠︎ Ocurrió un error: ${error.message}`)
   }
 }
@@ -131,6 +171,7 @@ const handler = async (m, { conn, text, command }) => {
 handler.command = handler.help = ['play', 'yta', 'ytmp3', 'play2', 'ytv', 'ytmp4', 'playaudio']
 handler.tags = ['descargas']
 handler.group = true
+handler.register = true
 
 export default handler
 
