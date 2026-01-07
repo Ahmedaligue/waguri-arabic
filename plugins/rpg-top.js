@@ -192,9 +192,9 @@ function getRankBadge(rank) {
   return badges[rank] || "⚫"
 }
 
-handler.help = ['best', 'top', 'ranking', 'leaderboard', 'mejores']
+handler.help = ['best', 'rank', 'ranking', 'leaderboard', 'mejores']
 handler.tags = ['rpg', 'cyberpunk']
-handler.command = /^(best|top|ranking|leaderboard|mejores|clasificación)$/i
+handler.command = /^(best|rank|ranking|leaderboard|mejores|clasificación)$/i
 handler.group = true
 handler.register = false
 
