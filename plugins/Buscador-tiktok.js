@@ -2,9 +2,7 @@ import axios from 'axios';
 const {
   proto,
   generateWAMessageFromContent,
-  prepareWAMessageMedia,
   generateWAMessageContent,
-  getDevice
 } = (await import("@whiskeysockets/baileys")).default;
 
 let handler = async (message, { conn, text, usedPrefix, command }) => {
@@ -66,78 +64,97 @@ let handler = async (message, { conn, text, usedPrefix, command }) => {
     const processingMsg = await conn.reply(message.chat, 
       `🔍 *BUSCANDO EN TIKTOK...* 🔍\n` +
       `*Búsqueda:* "${text}"\n\n` +
-      `⏳ Por favor espera mientras buscamos los videos...`,
+      `⏳ Buscando videos... Por favor espera.`,
       message
     );
 
-    // Realizar la búsqueda usando TU API ORIGINAL
-    let results = [];
-    let { data } = await axios.get("https://apis-starlights-team.koyeb.app/starlight/tiktoksearch?text=" + encodeURIComponent(text), {
-      timeout: 30000 // 30 segundos timeout
+    // Configurar headers con API key
+    const apiKey = 'stellar-3Tjfq4Rj';
+    const apiUrl = `https://api.stellarwa.xyz/dl/tiktok?query=${encodeURIComponent(text)}`;
+    
+    console.log(`Realizando búsqueda a: ${apiUrl}`);
+    
+    // Realizar la búsqueda con la nueva API
+    let { data } = await axios.get(apiUrl, {
+      headers: {
+        'Authorization': `Bearer ${apiKey}`,
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36',
+        'Accept': 'application/json'
+      },
+      timeout: 45000 // 45 segundos timeout
     });
     
-    if (!data || !data.data || data.data.length === 0) {
+    console.log('Respuesta de la API:', data);
+    
+    // Validar respuesta de la API
+    if (!data || !data.data || !Array.isArray(data.data)) {
       await conn.sendMessage(message.chat, { react: { text: "❌", key: message.key } });
       return conn.reply(message.chat, 
         `😔 *NO SE ENCONTRARON RESULTADOS*\n\n` +
-        `No se encontraron videos de TikTok para: "${text}"\n\n` +
-        `💡 *Sugerencias:*\n` +
-        `• Verifica la ortografía\n` +
-        `• Intenta con términos más generales\n` +
-        `• Prueba con palabras clave diferentes`,
+        `La API no devolvió resultados válidos para: "${text}"\n\n` +
+        `💡 *Posibles causas:*\n` +
+        `• La API puede estar temporalmente fuera de servicio\n` +
+        `• Intenta con otra búsqueda\n` +
+        `• Verifica tu conexión a internet`,
         message
       );
     }
 
     let searchResults = data.data;
     
-    // Validar que los resultados tengan la estructura esperada
-    const validResults = searchResults.filter(result => 
-      result && result.nowm && typeof result.nowm === 'string' && result.nowm.startsWith('http')
-    );
+    // Filtrar resultados válidos
+    const validResults = searchResults.filter(result => {
+      return result && 
+             result.video && 
+             result.video.noWatermark && 
+             typeof result.video.noWatermark === 'string' && 
+             result.video.noWatermark.startsWith('http');
+    });
     
     if (validResults.length === 0) {
       await conn.sendMessage(message.chat, { react: { text: "❌", key: message.key } });
       return conn.reply(message.chat, 
-        `⚠️ *PROBLEMA CON LOS VIDEOS*\n\n` +
-        `Los videos encontrados no tienen enlaces válidos.\n` +
-        `Intenta con otra búsqueda.`,
+        `⚠️ *VIDEOS NO DISPONIBLES*\n\n` +
+        `Se encontraron resultados pero no hay videos disponibles para: "${text}"\n\n` +
+        `• Los videos pueden tener restricciones\n` +
+        `• Intenta con otra búsqueda`,
         message
       );
     }
     
     shuffleArray(validResults);
-    let topResults = validResults.slice(0, Math.min(7, validResults.length));
+    let topResults = validResults.slice(0, Math.min(5, validResults.length));
 
     // Preparar los resultados
+    let results = [];
     for (let i = 0; i < topResults.length; i++) {
       let result = topResults[i];
       try {
-        const videoMsg = await createVideoMessage(result.nowm);
+        const videoMsg = await createVideoMessage(result.video.noWatermark);
         if (videoMsg) {
           results.push({
             body: proto.Message.InteractiveMessage.Body.fromObject({ text: null }),
             footer: proto.Message.InteractiveMessage.Footer.fromObject({ 
-              text: `🎬 Video ${i + 1}/${topResults.length}`
+              text: `👤 ${result.author?.nickname || 'Usuario'} • ❤️ ${result.stats?.diggCount || 0}`
             }),
             header: proto.Message.InteractiveMessage.Header.fromObject({
-              title: (result.title && result.title.length > 0) 
-                ? (result.title.length > 50 ? result.title.substring(0, 50) + '...' : result.title)
-                : `Video de TikTok ${i + 1}`,
+              title: result.desc ? 
+                (result.desc.length > 40 ? result.desc.substring(0, 40) + '...' : result.desc) :
+                `Video de TikTok ${i + 1}`,
               hasMediaAttachment: true,
               videoMessage: videoMsg
             }),
             nativeFlowMessage: proto.Message.InteractiveMessage.NativeFlowMessage.fromObject({ 
-              buttons: result.url ? [
+              buttons: [
                 {
                   name: "cta_url",
                   buttonParamsJson: JSON.stringify({
-                    display_text: "🔗 Ver en TikTok",
-                    url: result.url,
+                    display_text: "🎬 Ver en TikTok",
+                    url: result.share_url || `https://www.tiktok.com/@${result.author?.uniqueId || 'user'}`,
                     merchant_url: ""
                   })
                 }
-              ] : []
+              ]
             })
           });
         }
@@ -149,9 +166,9 @@ let handler = async (message, { conn, text, usedPrefix, command }) => {
     if (results.length === 0) {
       await conn.sendMessage(message.chat, { react: { text: "❌", key: message.key } });
       return conn.reply(message.chat, 
-        `⚠️ *NO SE PUDIERON CARGAR LOS VIDEOS*\n\n` +
-        `Se encontraron resultados pero hubo un error al procesarlos.\n` +
-        `Intenta nuevamente más tarde.`,
+        `⚠️ *ERROR AL PROCESAR VIDEOS*\n\n` +
+        `No se pudieron cargar los videos encontrados.\n` +
+        `Intenta con otra búsqueda o más tarde.`,
         message
       );
     }
@@ -184,13 +201,14 @@ let handler = async (message, { conn, text, usedPrefix, command }) => {
           },
           interactiveMessage: proto.Message.InteractiveMessage.fromObject({
             body: proto.Message.InteractiveMessage.Body.create({
-              text: `🌸 *RESULTADOS DE TIKTOK* 🌸\n\n` +
+              text: `🎬 *RESULTADOS TIKTOK* 🎬\n\n` +
                     `🔍 *Búsqueda:* "${text}"\n` +
-                    `📊 *Videos encontrados:* ${results.length}\n\n` +
-                    `*Desliza para ver más videos 👉*`
+                    `📊 *Videos encontrados:* ${results.length}\n` +
+                    `👤 *Tu registro:* ${user.name || conn.getName(message.sender)}\n\n` +
+                    `*Desliza para ver los videos 👉*`
             }),
             footer: proto.Message.InteractiveMessage.Footer.create({
-              text: `🎬 TikTok Search • ${new Date().toLocaleDateString('es-ES')}`
+              text: `Powered by Stellar API • ${new Date().toLocaleDateString('es-ES')}`
             }),
             header: proto.Message.InteractiveMessage.Header.create({
               hasMediaAttachment: false
@@ -211,12 +229,14 @@ let handler = async (message, { conn, text, usedPrefix, command }) => {
 
     // Mensaje de éxito adicional
     await conn.reply(message.chat, 
-      `✨ *BÚSQUEDA COMPLETADA* ✨\n\n` +
-      `✅ Se encontraron ${results.length} videos para: "${text}"\n\n` +
-      `📱 *Instrucciones:*\n` +
-      `• Desliza los videos para ver más\n` +
-      `• Los videos se autodestruyen después de verlos\n\n` +
-      `🔍 ¿Quieres buscar algo más?`,
+      `✨ *BÚSQUEDA EXITOSA* ✨\n\n` +
+      `✅ Se enviaron ${results.length} videos para: "${text}"\n\n` +
+      `📱 *Cómo usar:*\n` +
+      `• Desliza para ver todos los videos\n` +
+      `• Toca "Ver en TikTok" para abrir el original\n` +
+      `• Los videos son de una sola vista\n\n` +
+      `🔍 *¿Buscar algo más?*\n` +
+      `Usa: ${usedPrefix + command} <texto>`,
       message
     );
 
@@ -224,24 +244,45 @@ let handler = async (message, { conn, text, usedPrefix, command }) => {
     // Enviar reacción de error
     await conn.sendMessage(message.chat, { react: { text: "❌", key: message.key } });
     
-    console.error('Error en tiktoksearch:', error);
+    console.error('Error completo en tiktoksearch:', {
+      message: error.message,
+      code: error.code,
+      response: error.response?.data,
+      status: error.response?.status
+    });
     
     let errorMessage = `⚠️ *ERROR EN LA BÚSQUEDA*\n\n`;
     
-    if (error.code === 'ENOTFOUND' || error.code === 'ECONNREFUSED') {
-      errorMessage += `• No se pudo conectar con el servicio de búsqueda\n`;
-    } else if (error.response?.status) {
-      errorMessage += `• Error ${error.response.status} en la API\n`;
+    if (error.response) {
+      // Error de respuesta HTTP
+      if (error.response.status === 401) {
+        errorMessage += `• Error de autenticación con la API\n`;
+        errorMessage += `• La API key puede no ser válida\n`;
+      } else if (error.response.status === 429) {
+        errorMessage += `• Límite de solicitudes excedido\n`;
+        errorMessage += `• Espera unos minutos e intenta de nuevo\n`;
+      } else if (error.response.status === 404) {
+        errorMessage += `• La API de búsqueda no está disponible\n`;
+      } else {
+        errorMessage += `• Error HTTP ${error.response.status}\n`;
+      }
+    } else if (error.code === 'ECONNREFUSED') {
+      errorMessage += `• No se pudo conectar con la API\n`;
+      errorMessage += `• El servicio puede estar caído\n`;
+    } else if (error.code === 'ETIMEDOUT') {
+      errorMessage += `• La búsqueda tardó demasiado\n`;
+      errorMessage += `• Intenta con un término más específico\n`;
     } else if (error.message?.includes('timeout')) {
-      errorMessage += `• La búsqueda tardó demasiado tiempo\n`;
+      errorMessage += `• Tiempo de espera agotado\n`;
     } else {
       errorMessage += `• Error: ${error.message || 'Desconocido'}\n`;
     }
     
-    errorMessage += `\n💡 *Solución:*\n`;
+    errorMessage += `\n🔧 *Solución:*\n`;
     errorMessage += `• Verifica tu conexión a internet\n`;
     errorMessage += `• Intenta con otra búsqueda\n`;
-    errorMessage += `• Espera unos minutos e intenta de nuevo\n`;
+    errorMessage += `• Espera 1-2 minutos\n`;
+    errorMessage += `• Reporta el problema si persiste\n`;
     
     await conn.reply(message.chat, errorMessage, message);
   }
@@ -255,6 +296,6 @@ handler.tags = ["buscador", "entretenimiento"];
 handler.command = ["tiktoksearch", "ttss", "tiktoks", "buscatiktok"];
 handler.premium = false;
 handler.limit = true;
-handler.cooldown = 10000; // 10 segundos de cooldown
+handler.cooldown = 15000; // 15 segundos de cooldown
 
 export default handler;
