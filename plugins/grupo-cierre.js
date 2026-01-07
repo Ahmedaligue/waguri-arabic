@@ -79,7 +79,7 @@ const handler = async (m, { conn, args, usedPrefix, command, isAdmin, isOwner })
 
 handler.help = ['programarcierre <zona> <hora> <am/pm>'];
 handler.tags = ['group'];
-handler.command = ['programarcierre', 'cerrargrupo'];
+handler.command = ['programarcierre', 'close'];
 handler.admin = true;
 handler.group = true;
 
