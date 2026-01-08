@@ -118,12 +118,12 @@ const handler = async (m, { conn, text, command, usedPrefix }) => {
     await conn.reply(m.chat, infoMessage, m, JT)
 
     const audioAPIs = [
-      `https://rest.alyabotpe.xyz/dl/ytmp3?url=${encodeURIComponent(url)}&key=stellar-dXXUtmL2`,
+      `https://api.stellarwa.xyz/dl/ytmp3=${encodeURIComponent(url)}&key=stellar-3Tjfq4Rj`,
       `https://api-adonix.ultraplus.click/download/ytaudio?apikey=AdonixKeyxu5ccb9900&url=${encodeURIComponent(url)}`
     ]
 
     const videoAPIs = [
-      `https://rest.alyabotpe.xyz/dl/ytmp4?url=${encodeURIComponent(url)}&quality=144&key=stellar-dXXUtmL2`,
+      `https://api.stellarwa.xyz/dl/ytmp4=${encodeURIComponent(url)}&quality=144&key=stellar-3Tjfq4Rj`,
       `https://api-adonix.ultraplus.click/download/ytvideo?apikey=AdonixKeyxu5ccb9900&url=${encodeURIComponent(url)}`
     ]
 
