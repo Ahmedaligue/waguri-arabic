@@ -14,6 +14,8 @@ let handler = async (m, { conn }) => {
   const uptime = clockString(process.uptime() * 1000)
 
   let txt = `
+*Hola @${userId.split('@')[0]}, mi nombre es ${botname}*
+
 ╭─⊷ *INFORMACIÓN DEL BOT*
 │ ๖ۣۜ҉➢ Tipo : ${(conn.user.jid == global.conn.user.jid ? 'Principal' : 'Sub-bot')}
 │ ๖ۣۜ҉➢ Activo : ${uptime}
@@ -134,8 +136,6 @@ let handler = async (m, { conn }) => {
 │ ๖ۣۜ҉➢ pay - Enviar monedas a otro usuario
 │ ๖ۣۜ҉➢ economia - Ver tus estadísticas económicas
 ╰─────────────⊷
-
-*Hola @${userId.split('@')[0]}, mi nombre es ${botname}*
 `.trim()
 
   await conn.sendMessage(m.chat, {
