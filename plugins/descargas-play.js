@@ -1,8 +1,3 @@
-import fs from "fs"
-import path from "path"
-import fetch from "node-fetch"
-import yts from 'yt-search'
-
 const youtubeRegexID = /(?:youtu\.be\/|youtube\.com\/(?:watch\?v=|embed\/))([a-zA-Z0-9_-]{11})/
 
 const primaryFolder = "./primary"
@@ -17,12 +12,20 @@ async function fetchWithFallback(urls) {
     try {
       const res = await fetch(url)
       const json = await res.json()
-      if (json.status && json.data) {
-        // Detectar si la API es Adonix o Alya
-        const dlLink = json.data.dl || json.data.url
-        if (dlLink) return { url: dlLink, title: json.data.title }
+      // Adaptar a diferentes formatos de respuesta de API
+      if (json.status && (json.data || json.result)) {
+        const data = json.data || json.result
+        const dlLink = data.dl || data.url || data.link
+        const title = data.title || data.filename || 'desconocido'
+        if (dlLink) return { url: dlLink, title: title }
       }
-    } catch {}
+      // Formato alternativo para algunas APIs
+      if (json.dl || json.url) {
+        return { url: json.dl || json.url, title: json.title || 'desconocido' }
+      }
+    } catch (e) {
+      console.log(`API falló: ${url}`, e.message)
+    }
   }
   throw new Error('Todas las APIs fallaron')
 }
@@ -117,14 +120,23 @@ const handler = async (m, { conn, text, command, usedPrefix }) => {
     await conn.sendMessage(m.chat, { react: { text: "⏳", key: m.key } });
     await conn.reply(m.chat, infoMessage, m, JT)
 
+    // URLs de las APIs proporcionadas
+    const ytUrl = encodeURIComponent(url)
+    
+    // APIs para audio (MP3)
     const audioAPIs = [
-      `https://api.stellarwa.xyz/dl/ytmp3=${encodeURIComponent(url)}&key=stellar-3Tjfq4Rj`,
-      `https://api-adonix.ultraplus.click/download/ytaudio?apikey=AdonixKeyxu5ccb9900&url=${encodeURIComponent(url)}`
+      `https://rest.alyabotpe.xyz/dl/ytmp3?url=${ytUrl}`,
+      `https://rest.alyabotpe.xyz/dl/ytdlv2?url=${ytUrl}&type=audio`,
+      `https://api.stellarwa.xyz/dl/ytmp3=${ytUrl}&key=stellar-3Tjfq4Rj`,
+      `https://api-adonix.ultraplus.click/download/ytaudio?apikey=AdonixKeyxu5ccb9900&url=${ytUrl}`
     ]
-
+    
+    // APIs para video (MP4)
     const videoAPIs = [
-      `https://api.stellarwa.xyz/dl/ytmp4=${encodeURIComponent(url)}&quality=144&key=stellar-3Tjfq4Rj`,
-      `https://api-adonix.ultraplus.click/download/ytvideo?apikey=AdonixKeyxu5ccb9900&url=${encodeURIComponent(url)}`
+      `https://rest.alyabotpe.xyz/dl/ytmp4?url=${ytUrl}`,
+      `https://rest.alyabotpe.xyz/dl/ytdlv2?url=${ytUrl}&type=video`,
+      `https://api.stellarwa.xyz/dl/ytmp4=${ytUrl}&quality=144&key=stellar-3Tjfq4Rj`,
+      `https://api-adonix.ultraplus.click/download/ytvideo?apikey=AdonixKeyxu5ccb9900&url=${ytUrl}`
     ]
 
     if (['play', 'yta', 'ytmp3', 'playaudio'].includes(command)) {
@@ -133,12 +145,25 @@ const handler = async (m, { conn, text, command, usedPrefix }) => {
         const data = await fetchWithFallback(audioAPIs)
         // Enviar reacción de éxito
         await conn.sendMessage(m.chat, { react: { text: "✅", key: m.key } });
+        
+        // Enviar el audio
         await conn.sendMessage(m.chat, {
           audio: { url: data.url },
-          fileName: `${data.title || 'audio'}.mp3`,
+          fileName: `${data.title.replace(/[^\w\s]/gi, '') || 'audio'}.mp3`,
           mimetype: 'audio/mpeg',
-          ptt: false
+          ptt: false,
+          contextInfo: {
+            externalAdReply: {
+              title: data.title || 'Audio Descargado',
+              body: `🎵 Descargado con ${botname}`,
+              thumbnail: thumb,
+              mediaType: 1,
+              mediaUrl: data.url,
+              sourceUrl: data.url
+            }
+          }
         }, { quoted: m })
+        
       } catch (e) {
         await conn.sendMessage(m.chat, { react: { text: "❌", key: m.key } });
         return conn.reply(m.chat, `🌸 ¡Fallo en la descarga de audio! ${e.message}`, m)
@@ -149,11 +174,25 @@ const handler = async (m, { conn, text, command, usedPrefix }) => {
         const data = await fetchWithFallback(videoAPIs)
         // Enviar reacción de éxito
         await conn.sendMessage(m.chat, { react: { text: "✅", key: m.key } });
+        
+        // Enviar el video
         await conn.sendMessage(m.chat, {
           video: { url: data.url },
-          fileName: `${data.title || 'video'}.mp4`,
-          mimetype: 'video/mp4'
+          fileName: `${data.title.replace(/[^\w\s]/gi, '') || 'video'}.mp4`,
+          mimetype: 'video/mp4',
+          caption: `📹 *${data.title || 'Video descargado'}*\n\n🌸 Descargado con ${botname}`,
+          contextInfo: {
+            externalAdReply: {
+              title: data.title || 'Video Descargado',
+              body: `🎬 Descargado con ${botname}`,
+              thumbnail: thumb,
+              mediaType: 1,
+              mediaUrl: data.url,
+              sourceUrl: data.url
+            }
+          }
         }, { quoted: m })
+        
       } catch (e) {
         await conn.sendMessage(m.chat, { react: { text: "❌", key: m.key } });
         return conn.reply(m.chat, `🌸 ¡Fallo en la descarga de video! ${e.message}`, m)
