@@ -3,8 +3,8 @@ import yts from "yt-search"
 
 const youtubeRegexID = /(?:youtu\.be\/|youtube\.com\/(?:watch\?v=|embed\/))([a-zA-Z0-9_-]{11})/
 
-const API_BASE = "https://api-sky.ultraplus.click"
-const API_KEY = "Russellxz"
+const API_BASE = "https://rest.alyabotpe.xyz/dl/ytmp3"
+const API_KEY = "stellar-yJFoP0BO"
 
 async function skyYT(url, format) {
   const response = await fetch(`${API_BASE}/api/download/yt.php?url=${encodeURIComponent(url)}&format=${format}`, {
