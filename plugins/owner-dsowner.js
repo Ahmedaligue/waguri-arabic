@@ -1,43 +1,48 @@
-// by Duartexv
+/* Codigo hecho por @Fabri115 y mejorado por BrunoSobrino */
+
 import { readdirSync, unlinkSync, existsSync, promises as fs, rmSync } from 'fs'
 import path from 'path'
 
 var handler = async (m, { conn, usedPrefix }) => {
 
 if (global.conn.user.jid !== conn.user.jid) {
-return conn.reply(m.chat, `${emoji} Utiliza este comando directamente en el número principal del Bot.`, m)
+return conn.reply(m.chat, `Utiliza este comando directamente en el número principal del Bot.`, m)
 }
+await conn.reply(m.chat, `➢ Espera un momento...`, m)
+m.react(rwait)
 
-let chatId = m.isGroup ? [m.chat, m.sender] : [m.sender]
 let sessionPath = `./${sessions}/`
 
 try {
 
+if (!existsSync(sessionPath)) {
+return await conn.reply(m.chat, `${emoji} La carpeta está vacía.`, m)
+}
 let files = await fs.readdir(sessionPath)
 let filesDeleted = 0
-for (let file of files) {
-for (let id of chatId) {
-if (file.includes(id.split('@')[0])) {
+for (const file of files) {
+if (file !== 'creds.json') {
 await fs.unlink(path.join(sessionPath, file))
 filesDeleted++;
-break
-}}}
-
+}
+}
 if (filesDeleted === 0) {
-await conn.reply(m.chat, `${emoji2} No se encontró ningún archivo que incluya la ID del chat.`, m)
+await conn.reply(m.chat, `${emoji2} La carpeta esta vacía.`, m)
 } else {
-await conn.reply(m.chat, `${emoji2} Se eliminaron ${filesDeleted} archivos de sesión.`, m)
-conn.reply(m.chat, `${emoji} ¡Hola! ¿logras verme?`, m)
+m.react(done)
+await conn.reply(m.chat, `> ➢ Basura eliminada » ${filesDeleted}\n> Excepto el archivo creds.json.`, m)
+conn.reply(m.chat, `> ➢ Si me ves eres puto...`, m)
+
 }
 } catch (err) {
-console.error('Error al leer la carpeta o los archivos de sesión:', err)
-await conn.reply(m.chat, `${emoji} Hola Soy ${botname} Sigue El Canal y apoyanos porfavor.\n\n> ${channel}`, m)
+console.error('Error al leer la carpeta o los archivos de sesión:', err);
+await conn.reply(m.chat, `${msm} Ocurrió un fallo.`, m)
 }
 
 }
-handler.help = ['ds', 'fixmsgespera']
-handler.tags = ['info']
-handler.command = ['fixmsgespera', 'ds']
-handler.register = true
+handler.help = ['dsowner']
+handler.tags = ['owner']
+handler.command = ['delai', 'dsowner', 'clearallsession']
+handler.rowner = true;
 
 export default handler
