@@ -3,7 +3,7 @@ import yts from "yt-search"
 
 const youtubeRegexID = /(?:youtu\.be\/|youtube\.com\/(?:watch\?v=|embed\/|shorts\/))([a-zA-Z0-9_-]{11})/
 
-const API_BASE = "https://rest.alyabotpe.xyz/dl/ytmp3"
+const API_URL = "https://rest.alyabotpe.xyz/dl/ytmp3"
 const API_KEY = "stellar-SSfb2OPw"
 
 async function skyYT(url, format) {
