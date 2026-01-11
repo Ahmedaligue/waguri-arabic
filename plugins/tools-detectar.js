@@ -11,7 +11,7 @@ var handler = async (m, { usedPrefix, command }) => {
 
         const files = fs.readdirSync(pluginsDir).filter(file => file.endsWith('.js'))
 
-        let response = `💗 *Revisión de Syntax Errors:*\n\n`
+        let response = `🌸 *Revisión de Syntax Errors:*\n\n`
         let hasErrors = false
 
         for (const file of files) {
