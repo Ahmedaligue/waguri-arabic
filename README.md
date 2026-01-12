@@ -51,7 +51,7 @@ Incluye funciones de entretenimiento, comandos RPG, inteligencia artificial, des
 - 🛠️ Repositorio: [Waguri Bot en GitHub](https://github.com/rufinofelipe/waguri-bot)
 - 💬 Comunidad: [Grupo de WhatsApp](https://chat.whatsapp.com/LRQrf8vv50BDtwN8JWfhrX)
 - 📢 Canal del Bot: [Waguri Bot Canal](https://whatsapp.com/channel/0029VbBUHyQCsU9IpJ0oIO2i)
-- 📸 Instagram del creador: [@rufinofelipe](https://instagram.com/rufinofelipe)
+- 📸 Instagram del creador: [@rufinofelipe](https://www.instagram.com/rufino_felipe.15)
 
 ---
 
