@@ -1,3 +1,5 @@
+// código creado por Rufino 
+
 // ============================================
 // COMANDO: LYRICS (Letras de canciones)
 // Archivo: lyrics.js
