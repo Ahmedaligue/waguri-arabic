@@ -34,281 +34,281 @@ let handler = async (m, { conn }) => {
 ┏━━━━━━━━━━━━━━━━━━┓
     ⚙️ 𝗛𝗘𝗥𝗥𝗔𝗠𝗜𝗘𝗡𝗧𝗔𝗦
 ┗━━━━━━━━━━━━━━━━━━┛
-❀ /autoadmin
-> hace admin al bot
+ ❀ /autoadmin
+ > hace admin al bot
 
-❀ /ping
-> comprueba el tiempo de respuesta 
+ ❀ /ping
+ > comprueba el tiempo de respuesta 
 
-❀ /demote
-> descarta a un usuario como admin 
+ ❀ /demote
+ > descarta a un usuario como admin 
 
-❀ /join
-> el bot se une a otro
+ ❀ /join
+ > el bot se une a otro
 
-❀ /quitar prefijo
-> quita el prefijo de comandos 
+ ❀ /quitar prefijo
+ > quita el prefijo de comandos 
 
-❀ /update
-> actulizar bot
+ ❀ /update
+ > actulizar bot
 
-❀ /setprefijo
-> poner prefijo de comandos 
+ ❀ /setprefijo
+ > poner prefijo de comandos 
 
-❀ /bots
-> ver listo de subbots 
+ ❀ /bots
+ > ver listo de subbots 
 
-❀ /delprimary 
-> elimina el bot primario 
+ ❀ /delprimary 
+ > elimina el bot primario 
 
-❀ /delprimary2
-> elimina al segundo bot primario 
+ ❀ /delprimary2
+ > elimina al segundo bot primario 
 
-❀ /leave
-> salir de un grupo 
+ ❀ /leave
+ > salir de un grupo 
 
-❀ /logotipo
-> poner logo
+ ❀ /logotipo
+ > poner logo
 
-❀ /reload
-> reactivar el bot
+ ❀ /reload
+ > reactivar el bot
 
-❀ /setbanner
-> poner banner 
+ ❀ /setbanner
+ > poner banner 
 
-❀ /setcurrency
-> poner moneda 
+ ❀ /setcurrency
+ > poner moneda 
 
-❀ /setname
-> poner nombre 
+ ❀ /setname
+ > poner nombre 
 
-❀ /setprimary
-> elegir bot primario 
+ ❀ /setprimary
+ > elegir bot primario 
 
-❀ /tag
-> menciana a todos los usuarios 
+ ❀ /tag
+ > menciana a todos los usuarios 
 
-❀ /invocar
-> invocar al grupo 
+ ❀ /invocar
+ > invocar al grupo 
 
-❀ /sticker
-> hacer sticker
+ ❀ /sticker
+ > hacer sticker
 
-❀ /kick
-> elimina a un usuario  
+ ❀ /kick
+ > elimina a un usuario  
 
-❀ /antilink
-> anti enlace 
+ ❀ /antilink
+ > anti enlace 
 
-❀ /del
-> elimina un mensaje
+ ❀ /del
+ > elimina un mensaje
 
-❀ /reg
-> regístrate en el bot
+ ❀ /reg
+ > regístrate en el bot
 
-❀ /creador
-> lista de los creadores del bot
+ ❀ /creador
+ > lista de los creadores del bot
 
-❀ /repo
-> muestra el repositorio del bot 
+ ❀ /repo
+ > muestra el repositorio del bot 
 
-❀ /link
-> muestra los enlaces oficiales 
+ ❀ /link
+ > muestra los enlaces oficiales 
 
-❀ /emojimix 😀+😀
-> combina dos emojis
+ ❀ /emojimix 😀+😀
+ > combina dos emojis
 
-┏━━━━━━━━━━━━━━━━━━┓
+ ┏━━━━━━━━━━━━━━━━━━┓
      🎮 𝗗𝗜𝗩𝗘𝗥𝗦𝗜𝗢́𝗡
-┗━━━━━━━━━━━━━━━━━━┛
-❀ /doxear
-> simula un doxeo
+ ┗━━━━━━━━━━━━━━━━━━┛
+ ❀ /doxear
+ > simula un doxeo
 
-❀ /facto
-> tira un facto aleatorio
+ ❀ /facto
+ > tira un facto aleatorio
 
-❀ /piropo
-> tira un piropo
+ ❀ /piropo
+ > tira un piropo
 
-❀ /reto 
-> el bot te reta
+ ❀ /reto 
+ > el bot te reta
 
-❀ /top <texto>
-> top 10 de una categoría 
+ ❀ /top <texto>
+ > top 10 de una categoría 
 
-❀ /iqtest
-> el bot hace un test de tu iq
+ ❀ /iqtest
+ > el bot hace un test de tu iq
 
-❀ /gey <usuario>
-> el bot muestra a un gay
+ ❀ /gey <usuario>
+ > el bot muestra a un gay
 
 ┏━━━━━━━━━━━━━━━━━━┓
      🎨 𝗔𝗡𝗜𝗠𝗘
 ┗━━━━━━━━━━━━━━━━━━┛
-❀ /bath  
-> Bañarse
+ ❀ /bath  
+ > Bañarse
 
-❀ /bite  
-> Morder
+ ❀ /bite  
+ > Morder
 
-❀ /blush  
-> Sonrojarse
+ ❀ /blush  
+ > Sonrojarse
 
-❀ /bored  
-> Estar aburrido
+ ❀ /bored  
+ > Estar aburrido
 
-❀ /buenas-noches  
-> Desear buenas noches
+ ❀ /buenas-noches  
+ > Desear buenas noches
 
-❀ /buenos-dias  
-> Desear buenos días
+ ❀ /buenos-dias  
+ > Desear buenos días
 
-❀ /cry  
-> Llorar
+ ❀ /cry  
+ > Llorar
 
-❀ /dance  
-> Bailar
+ ❀ /dance  
+ > Bailar
 
-❀ /fumar  
-> Fumar
+ ❀ /fumar  
+ > Fumar
 
-❀ /hug  
-> Abrazar
+ ❀ /hug  
+ > Abrazar
 
-❀ /kiss  
-> Besar
+ ❀ /kiss  
+ > Besar
 
-❀ /pensar  
-> Pensar
+ ❀ /pensar  
+ > Pensar
 
-❀ /sacred  
-> asustado 
+ ❀ /sacred  
+ > asustado 
 
-❀ /slap  
-> Dar una cachetada
+ ❀ /slap  
+ > Dar una cachetada
 
-❀ /sleep  
-> Dormir
+ ❀ /sleep  
+ > Dormir
 
-┏━━━━━━━━━━━━━━━━━━┓
+ ┏━━━━━━━━━━━━━━━━━━┓
      🤖 𝗜𝗡𝗧𝗘𝗟𝗜𝗚𝗘𝗡𝗖𝗜𝗔 𝗔𝗥𝗧𝗜𝗙𝗜𝗖𝗜𝗔𝗟
-┗━━━━━━━━━━━━━━━━━━┛
-❀ /copilot  
-> habla con copilot 
+ ┗━━━━━━━━━━━━━━━━━━┛
+ ❀ /copilot  
+ > habla con copilot 
 
-❀ /gemini  
-> habla con gemini
+ ❀ /gemini  
+ > habla con gemini
 
-❀ /GPT
-> habla con ChatGPT 
+ ❀ /GPT
+ > habla con ChatGPT 
 
-┏━━━━━━━━━━━━━━━━━━┓
+ ┏━━━━━━━━━━━━━━━━━━┓
      📥 𝗗𝗘𝗦𝗖𝗔𝗥𝗚𝗔𝗦
-┗━━━━━━━━━━━━━━━━━━┛
-❀ /play  
-> Descargar música desde YouTube  
+ ┗━━━━━━━━━━━━━━━━━━┛
+ ❀ /play  
+ > Descargar música desde YouTube  
 
-❀ /play2  
-> Descargar videos desde YouTube  
+ ❀ /play2  
+ > Descargar videos desde YouTube  
 
-❀ /tiktoksearch  
-> Buscar contenido en TikTok para descargar
+ ❀ /tiktoksearch  
+ > Buscar contenido en TikTok para   descargar
+ 
+ ❀ /ig
+ > descarga archivos de Instagram
 
-❀ /ig
-> descarga archivos de Instagram
+ ❀ /APK
+ > descarga una aplicación
 
-❀ /APK
-> descarga una aplicación
+ ❀ /pin
+ > descargar archivos de pinterest 
 
-❀ /pin
-> descargar archivos de pinterest 
-
-┏━━━━━━━━━━━━━━━━━━┓
+ ┏━━━━━━━━━━━━━━━━━━┓
      ⚔️ 𝗥𝗣𝗚
-┗━━━━━━━━━━━━━━━━━━┛
-❀ /cazar  
-> inicia una misión de caza
+ ┗━━━━━━━━━━━━━━━━━━┛
+ ❀ /cazar  
+ > inicia una misión de caza
 
-❀ /contratos  
-> muestra contratos especiales
+ ❀ /contratos  
+ > muestra contratos especiales
 
-❀ /aceptar <id>  
-> acepta un contrato del tablero
+ ❀ /aceptar <id>  
+ > acepta un contrato del tablero
 
-❀ /completar  
-> completa el contrato activo
+ ❀ /completar  
+ > completa el contrato activo
 
-❀ /perfil  
-> muestra tus estadísticas
+ ❀ /perfil  
+ > muestra tus estadísticas
 
-❀ /diario  
-> reclama recompensa diaria
+ ❀ /diario  
+ > reclama recompensa diaria
 
-❀ /minar  
-> mina criptomonedas
+ ❀ /minar  
+ > mina criptomonedas
 
-❀ /transferir @usuario cantidad  
-> envía créditos a otro jugador
+ ❀ /transferir @usuario cantidad  
+ > envía créditos a otro jugador
 
-❀ /taller  
-> abre la tienda de mejoras
+ ❀ /taller  
+ > abre la tienda de mejoras
 
-❀ /comprar <objeto>  
-> compra un ítem del taller
+ ❀ /comprar <objeto>  
+ > compra un ítem del taller
 
-❀ /comprar.boy <objeto>  
-> compra un objeto especial
+ ❀ /comprar.boy <objeto>  
+ > compra un objeto especial
 
-❀ /item  
-> muestra información de un objeto
+ ❀ /item  
+ > muestra información de un objeto
 
-❀ /vender <objeto>  
-> vende un ítem de tu inventario
+ ❀ /vender <objeto>  
+ > vende un ítem de tu inventario
 
-❀ /duelo @usuario  
-> reta a un duelo pvp
+ ❀ /duelo @usuario  
+ > reta a un duelo pvp
 
-❀ /hack  
-> hackea sistemas para ganar recompensas
+ ❀ /hack  
+ > hackea sistemas para ganar recompensas
 
-❀ /best  
-> ranking de mejores jugadores
+ ❀ /best  
+ > ranking de mejores jugadores
 
-❀ /estadisticas  
-> muestra stats detalladas
+ ❀ /estadisticas  
+ > muestra stats detalladas
 
-❀ /inventario  
-> revisa tu equipo disponible
+ ❀ /inventario  
+ > revisa tu equipo disponible
 
-┏━━━━━━━━━━━━━━━━━━┓
+ ┏━━━━━━━━━━━━━━━━━━┓
      💰 𝗘𝗖𝗢𝗡𝗢𝗠𝗜́𝗔
-┗━━━━━━━━━━━━━━━━━━┛
-❀ /balance  
-> Ver tu saldo actual
+ ┗━━━━━━━━━━━━━━━━━━┛
+ ❀ /balance  
+ > Ver tu saldo actual
 
-❀ /daily  
-> Reclamar recompensa diaria
+ ❀ /daily  
+ > Reclamar recompensa diaria
 
-❀ /trabajar  
-> Realiza un trabajo para ganar monedas
+ ❀ /trabajar  
+ > Realiza un trabajo para ganar monedas
 
-❀ /trabajos  
-> Ver lista de trabajos disponibles
+ ❀ /trabajos  
+ > Ver lista de trabajos disponibles
 
-❀ /aceptartrabajo  
-> Aceptar un trabajo de la lista
+ ❀ /aceptartrabajo  
+ > Aceptar un trabajo de la lista
 
-❀ /renunciar  
-> Renunciar a tu trabajo actual
+ ❀ /renunciar  
+ > Renunciar a tu trabajo actual
 
-❀ /casino  
-> Accede al casino para apostar
+ ❀ /casino  
+ > Accede al casino para apostar
 
-❀ /tienda  
-> Ver la tienda de objetos disponibles
+ ❀ /tienda  
+ > Ver la tienda de objetos disponibles
 
-❀ /comprar  
-> Comprar un objeto de la tienda
+ ❀ /comprar  
+ > Comprar un objeto de la tienda
 
 ❀ /vender  
 > Vender un objeto del inventario
