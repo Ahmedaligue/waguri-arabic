@@ -3,7 +3,7 @@ import path from "path"
 import fetch from "node-fetch"
 import yts from 'yt-search'
 
-const API_KEY = 'stellar-dXXUtmL2'
+const API_KEY = 'stellar-3Tjfq4Rj'
 const youtubeRegexID = /(?:youtu\.be\/|youtube\.com\/(?:watch\?v=|embed\/))([a-zA-Z0-9_-]{11})/
 
 const handler = async (m, { conn, text, command }) => {
@@ -61,7 +61,7 @@ const handler = async (m, { conn, text, command }) => {
 
     if (['play', 'yta', 'ytmp3', 'playaudio'].includes(command)) {
       try {
-        const audioAPI = `https://rest.alyabotpe.xyz/dl/ytmp3?url=${encodeURIComponent(url)}&key=${API_KEY}`
+        const audioAPI = `https://api.stellarwa.xyz/dl/ytmp3?url=${encodeURIComponent(url)}&key=${API_KEY}`
         const res = await fetch(audioAPI)
         const json = await res.json()
 
@@ -80,7 +80,7 @@ const handler = async (m, { conn, text, command }) => {
       }
     } else if (['play2', 'ytv', 'ytmp4'].includes(command)) {
       try {
-        const videoAPI = `https://rest.alyabotpe.xyz/dl/ytmp4?url=${encodeURIComponent(url)}&quality=144&key=${API_KEY}`
+        const videoAPI = `https://api.stellarwa.xyz/dl/ytmp4?url=${encodeURIComponent(url)}&key=${API_KEY}`
         const res = await fetch(videoAPI)
         const json = await res.json()
 
