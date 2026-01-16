@@ -3,7 +3,6 @@ import path from "path"
 import fetch from "node-fetch"
 import yts from 'yt-search'
 
-const API_KEY = 'stellar-yJFoP0BO'
 const youtubeRegexID = /(?:youtu\.be\/|youtube\.com\/(?:watch\?v=|embed\/))([a-zA-Z0-9_-]{11})/
 
 const handler = async (m, { conn, text, command }) => {
@@ -59,35 +58,60 @@ const handler = async (m, { conn, text, command }) => {
 
     await conn.reply(m.chat, infoMessage, m, JT)
 
+    // Usar la API de Neji para descargar
     if (['play', 'yta', 'ytmp3', 'playaudio'].includes(command)) {
       try {
-        const audioAPI = `https://rest.alyabotpe.xyz/dl/ytmp3?url=${encodeURIComponent(url)}&key=${API_KEY}`
-        const res = await fetch(audioAPI)
+        // Codificar el nombre de la canción para la API de Neji
+        // Si es una URL, extraer el ID, si no, buscar primero
+        let searchQuery = text
+        if (!youtubeRegexID.test(text)) {
+          // Si no es URL, usar el video encontrado
+          searchQuery = url.split('v=')[1] || url.split('/').pop()
+        }
+        
+        const nejiAPI = `https://neji-api.vercel.app/api/downloader/ytmp3?url=${encodeURIComponent(searchQuery)}`
+        console.log('Consultando API:', nejiAPI)
+        
+        const res = await fetch(nejiAPI)
         const json = await res.json()
-
-        if (json.status && json.data && json.data.dl) {
+        
+        if (json && json.result) {
           await conn.sendMessage(m.chat, {
-            audio: { url: json.data.dl },
-            fileName: `${json.data.title || 'audio'}.mp3`,
+            audio: { url: json.result.download },
+            fileName: `${title}.mp3`,
+            mimetype: 'audio/mpeg',
+            ptt: false
+          }, { quoted: m })
+        } else if (json && json.download) {
+          await conn.sendMessage(m.chat, {
+            audio: { url: json.download },
+            fileName: `${title}.mp3`,
             mimetype: 'audio/mpeg',
             ptt: false
           }, { quoted: m })
         } else {
-          throw new Error('No se pudo obtener el audio')
+          throw new Error('No se pudo obtener el audio de la API')
         }
       } catch (e) {
+        console.error('Error:', e)
         return conn.reply(m.chat, `🌸 ¡Fallo en la descarga de audio! ${e.message}`, m)
       }
     } else if (['play2', 'ytv', 'ytmp4'].includes(command)) {
       try {
-        const videoAPI = `https://rest.alyabotpe.xyz/dl/ytmp4?url=${encodeURIComponent(url)}&quality=144&key=${API_KEY}`
-        const res = await fetch(videoAPI)
+        const nejiAPI = `https://neji-api.vercel.app/api/downloader/ytmp4?url=${encodeURIComponent(url)}`
+        const res = await fetch(nejiAPI)
         const json = await res.json()
-
-        if (json.status && json.data && json.data.dl) {
+        
+        if (json && json.result?.download) {
           await conn.sendMessage(m.chat, {
-            video: { url: json.data.dl },
-            fileName: `${json.data.title || 'video'}.mp4`,
+            video: { url: json.result.download },
+            fileName: `${title}.mp4`,
+            mimetype: 'video/mp4'
+          }, { quoted: m })
+        } else if (json && json.download) {
+          await conn.sendMessage(m.chat, {
+            video: { url: json.download },
+            fileName: `${title}.mp4`,
             mimetype: 'video/mp4'
           }, { quoted: m })
         } else {
@@ -101,6 +125,7 @@ const handler = async (m, { conn, text, command }) => {
     }
 
   } catch (error) {
+    console.error(error)
     return m.reply(`⚠︎ Ocurrió un error: ${error.message}`)
   }
 }
