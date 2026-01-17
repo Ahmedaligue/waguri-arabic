@@ -1,3 +1,5 @@
+// by Rufino 
+
 import fs from 'fs'
 import path from 'path'
 
@@ -66,7 +68,7 @@ let handler = async (m, { conn }) => {
 
   if (!user) {
     user = db.users[m.sender] = {
-      wallet: 1000,   // bono inicial solo para nuevos usuarios
+      wallet: 1000,
       bank: 0,
       lastDaily: 0,
       lastWork: 0,
@@ -77,7 +79,7 @@ let handler = async (m, { conn }) => {
     user.bank = Number(user.bank) || 0
   }
 
-  const cooldown = 3600000 // 1 hora → cámbialo a 0 si quieres sin límite
+  const cooldown = 3600000 // 1 hora
   const now = Date.now()
 
   if (user.lastWork && now - user.lastWork < cooldown) {
@@ -94,10 +96,12 @@ let handler = async (m, { conn }) => {
 
   fs.writeFileSync(dbPath, JSON.stringify(db, null, 2))
 
-  let mensaje = `🌸 Trabajaste como **\( {trabajo.nombre}**\n💰 Ganaste * \){ganancia} Waguri Coins* 🪙`
+  // ¡Aquí está la parte crítica! Usa BACKTICKS (`) y ${} correctamente
+  let mensaje = `🌸 Trabajaste como **${trabajo.nombre}**
+💰 Ganaste *${ganancia} Waguri Coins* 🪙`
 
   if (isNew) {
-    mensaje += `\n\n¡Bienvenido! Te dimos **1000 Waguri Coins** de regalo para empezar ✨`
+    mensaje += `\n\n¡Bienvenido! Te dimos **1000 Waguri Coins** de regalo ✨`
   }
 
   conn.reply(m.chat, mensaje, m)
