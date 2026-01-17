@@ -1,3 +1,5 @@
+// by Rufino 
+
 import fs from 'fs'
 import path from 'path'
 
@@ -10,7 +12,7 @@ let handler = async (m, { conn, text, usedPrefix, command }) => {
   let user = db.users[m.sender]
   if (!user) {
     user = db.users[m.sender] = {
-      wallet: 0,
+      wallet: 1000, // bono si es nuevo
       bank: 0,
       lastDaily: 0,
       lastWork: 0,
@@ -22,7 +24,7 @@ let handler = async (m, { conn, text, usedPrefix, command }) => {
   user.bank   = Number(user.bank)   || 0
 
   if (!text) {
-    return conn.reply(m.chat, `🌸 Usa: *\( {usedPrefix + command} <cantidad>*\nEjemplo: \){usedPrefix + command} 300`, m)
+    return conn.reply(m.chat, `🌸 Usa: *\( {usedPrefix + command} <cantidad>*\nEjemplo: \){usedPrefix + command} 500`, m)
   }
 
   let cantidad = Number(text.trim())
@@ -31,16 +33,15 @@ let handler = async (m, { conn, text, usedPrefix, command }) => {
   }
 
   if (cantidad > user.bank) {
-    return conn.reply(m.chat, `🌸 No tienes suficientes Waguri Coins en el banco.\nSolo tienes ${user.bank} guardados.`, m)
+    return conn.reply(m.chat, `🌸 No tienes suficientes en el banco. Solo tienes ${user.bank} guardados.`, m)
   }
 
-  // Transferir del banco a la cartera
   user.bank -= cantidad
   user.wallet += cantidad
 
   fs.writeFileSync(dbPath, JSON.stringify(db, null, 2))
 
-  let txt = `🌸 *¡Retiro realizado con éxito!*
+  let txt = `🌸 *¡Retiro exitoso!*
 
 Sacaste **${cantidad} Waguri Coins** 🪙 del banco.
 
