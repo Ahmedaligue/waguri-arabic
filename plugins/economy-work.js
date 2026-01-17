@@ -5,7 +5,6 @@ import path from 'path'
 
 const dbPath = path.join(process.cwd(), 'database.json')
 
-// 51 trabajos aleatorios con ganancias variadas
 const trabajos = [
   { nombre: "limpiar casas", min: 50, max: 150 },
   { nombre: "cortar el césped del jardín", min: 60, max: 200 },
@@ -60,7 +59,7 @@ const trabajos = [
   { nombre: "hacer programación freelance básica", min: 300, max: 1000 }
 ]
 
-let handler = async (m, { conn, usedPrefix, command }) => {
+let handler = async (m, { conn }) => {
   let db = JSON.parse(fs.readFileSync(dbPath, 'utf-8') || '{}')
   if (!db.users) db.users = {}
   
@@ -75,32 +74,30 @@ let handler = async (m, { conn, usedPrefix, command }) => {
     }
   }
 
-  // Prevenir NaN
   user.wallet = Number(user.wallet) || 0
 
-  const cooldown = 3600000 // 1 hora → cambia a 0 si no quieres cooldown
+  const cooldown = 3600000 // 1 hora → pon 0 si no quieres límite
   const now = Date.now()
 
   if (user.lastWork && now - user.lastWork < cooldown) {
     let remaining = cooldown - (now - user.lastWork)
     let minutes = Math.ceil(remaining / 60000)
-    return conn.reply(m.chat, `✨ Faltan ≈${minutes} minutos para poder trabajar otra vez.`, m)
+    return conn.reply(m.chat, `Faltan ≈${minutes} minutos para poder trabajar otra vez.`, m)
   }
 
-  // Seleccionar trabajo y calcular ganancia
   let trabajo = trabajos[Math.floor(Math.random() * trabajos.length)]
   let ganancia = Math.floor(Math.random() * (trabajo.max - trabajo.min + 1)) + trabajo.min
 
-  // Actualizar saldo y tiempo
-  user.wallet = user.wallet + ganancia
+  user.wallet += ganancia
   user.lastWork = now
 
   fs.writeFileSync(dbPath, JSON.stringify(db, null, 2))
 
-  // Mensaje MÍNIMO: solo trabajo y ganancia
-  let txt = `🌸 Trabajaste como **\( {trabajo.nombre}**\n💰 Ganaste * \){ganancia} Waguri Coins* 🪙`
+  // ¡Aquí está la clave! Usa BACKTICKS (`) para que funcione la interpolación
+  let mensaje = `🌸 Trabajaste como **${trabajo.nombre}**
+💰 Ganaste *${ganancia} Waguri Coins* 🪙`
 
-  conn.reply(m.chat, txt, m)
+  conn.reply(m.chat, mensaje, m)
 }
 
 handler.help = ['trabajar', 'work', 'job']
