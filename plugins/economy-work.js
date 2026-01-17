@@ -96,7 +96,7 @@ let handler = async (m, { conn }) => {
 
   fs.writeFileSync(dbPath, JSON.stringify(db, null, 2))
 
-  let mensaje = `🌸 Trabajaste como **\( {trabajo.nombre}**\n💰 Ganaste * \){ganancia} Waguri Coins* 🪙`
+  let mensaje = `🌸 Trabajaste como **\( ${trabajo.nombre}**\n💰 Ganaste * \)${ganancia} Waguri Coins* 🪙`
 
   if (isNewUser) {
     mensaje += `\n\n¡Bienvenido! Te dimos **1000 Waguri Coins** de regalo ✨`
