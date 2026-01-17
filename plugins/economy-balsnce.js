@@ -1,5 +1,4 @@
 // by Rufino 
-
 import fs from 'fs'
 import path from 'path'
 
@@ -9,25 +8,28 @@ let handler = async (m, { conn, usedPrefix, command }) => {
   let db = JSON.parse(fs.readFileSync(dbPath, 'utf-8') || '{}')
   if (!db.users) db.users = {}
 
-  let user = db.users[m.sender]
+  const sender = m.sender
+  let user = db.users[sender]
 
-  // Si no existe el usuario → crearlo con bono inicial (igual que en work)
+  // Si el usuario no existe, crearlo con bono inicial (igual que en !trabajar)
   if (!user) {
-    user = db.users[m.sender] = {
-      wallet: 1000,   // bono de bienvenida como en !trabajar
+    user = {
+      wallet: 1000,
       bank: 0,
       lastDaily: 0,
       lastWork: 0,
       lastRob: 0
     }
-    fs.writeFileSync(dbPath, JSON.stringify(db, null, 2)) // guardar inmediatamente
+    db.users[sender] = user
+    fs.writeFileSync(dbPath, JSON.stringify(db, null, 2))
   }
 
-  // Forzar números (evita NaN o undefined)
+  // Forzar valores a número (evita NaN o undefined)
   let wallet = Number(user.wallet) || 0
   let bank   = Number(user.bank)   || 0
   let total  = wallet + bank
 
+  // Mensaje con interpolación correcta usando ${}
   let txt = `🌸 *Tu saldo en Waguri Coins* 🪙
 
 En mano (cartera): **${wallet}**
@@ -35,12 +37,12 @@ En banco (seguro): **${bank}**
 ─────────────────────
 Total acumulado: **${total}** ✨
 
-¡Sigue trabajando y creciendo tu fortuna! 🔥`
+¡Sigue trabajando para aumentar tu fortuna! 🔥`
 
   conn.reply(m.chat, txt, m)
 }
 
-handler.help = ['balance', 'bal', 'dinero']
+handler.help = ['balance', 'bal', 'dinero', 'saldo']
 handler.tags = ['economy']
 handler.command = /^(balance|bal|dinero|saldo)$/i
 handler.group = true
