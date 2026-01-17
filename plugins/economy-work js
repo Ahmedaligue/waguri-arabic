@@ -58,7 +58,14 @@ const trabajos = [
 ]
 
 let handler = async (m, { conn }) => {
-  let db = JSON.parse(fs.readFileSync(dbPath, 'utf-8') || '{}')
+  let db
+  try {
+    db = JSON.parse(fs.readFileSync(dbPath, 'utf-8') || '{}')
+  } catch (err) {
+    console.log('Error leyendo DB:', err)
+    return conn.reply(m.chat, 'Error interno al leer la base de datos 😔', m)
+  }
+
   if (!db.users) db.users = {}
 
   const sender = m.sender
@@ -94,9 +101,14 @@ let handler = async (m, { conn }) => {
   user.coin += ganancia
   user.lastWork = now
 
-  fs.writeFileSync(dbPath, JSON.stringify(db, null, 2))
+  try {
+    fs.writeFileSync(dbPath, JSON.stringify(db, null, 2))
+  } catch (err) {
+    console.log('Error guardando DB:', err)
+    return conn.reply(m.chat, 'Error al guardar el progreso 😔', m)
+  }
 
-  let mensaje = `🌸 Trabajaste como **\( ${trabajo.nombre}**\n💰 Ganaste * \)${ganancia} Waguri Coins* 🪙`
+  let mensaje = `🌸 Trabajaste como **\( {trabajo.nombre}**\n💰 Ganaste * \){ganancia} Waguri Coins* 🪙`
 
   if (isNewUser) {
     mensaje += `\n\n¡Bienvenido! Te dimos **1000 Waguri Coins** de regalo ✨`
