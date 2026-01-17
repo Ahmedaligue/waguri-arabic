@@ -1,4 +1,3 @@
-// by Rufino 
 import fs from 'fs'
 import path from 'path'
 
@@ -69,7 +68,7 @@ let handler = async (m, { conn }) => {
 
   if (isNewUser) {
     user = {
-      wallet: 1000,
+      coin: 1000,  // bono inicial solo la primera vez
       bank: 0,
       lastDaily: 0,
       lastWork: 0,
@@ -78,9 +77,9 @@ let handler = async (m, { conn }) => {
     db.users[sender] = user
   }
 
-  user.wallet = Number(user.wallet) || 0
+  user.coin = Number(user.coin) || 0
 
-  const cooldown = 3600000 // 1 hora
+  const cooldown = 3600000 // 1 hora (cámbialo a 0 para pruebas rápidas)
   const now = Date.now()
 
   if (user.lastWork && now - user.lastWork < cooldown) {
@@ -92,13 +91,12 @@ let handler = async (m, { conn }) => {
   const trabajo = trabajos[Math.floor(Math.random() * trabajos.length)]
   const ganancia = Math.floor(Math.random() * (trabajo.max - trabajo.min + 1)) + trabajo.min
 
-  user.wallet += ganancia
+  user.coin += ganancia
   user.lastWork = now
 
   fs.writeFileSync(dbPath, JSON.stringify(db, null, 2))
 
-  let mensaje = `🌸 Trabajaste como **${trabajo.nombre}**
-💰 Ganaste *${ganancia} Waguri Coins* 🪙`
+  let mensaje = `🌸 Trabajaste como **\( {trabajo.nombre}**\n💰 Ganaste * \){ganancia} Waguri Coins* 🪙`
 
   if (isNewUser) {
     mensaje += `\n\n¡Bienvenido! Te dimos **1000 Waguri Coins** de regalo ✨`
