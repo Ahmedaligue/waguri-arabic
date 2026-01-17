@@ -5,37 +5,39 @@ import path from 'path'
 const dbPath = path.join(process.cwd(), 'database.json')
 
 let handler = async (m, { conn, usedPrefix, command }) => {
-  let db = JSON.parse(fs.readFileSync(dbPath, 'utf-8') || '{}')
+  let db
+  try {
+    db = JSON.parse(fs.readFileSync(dbPath, 'utf-8') || '{}')
+  } catch (e) {
+    return conn.reply(m.chat, 'Error al leer la base de datos 😔', m)
+  }
+
   if (!db.users) db.users = {}
 
-  const sender = m.sender
-  let user = db.users[sender]
+  let user = db.users[m.sender]
 
-  // Si el usuario no existe, crearlo con bono inicial (igual que en !trabajar)
   if (!user) {
     user = {
-      wallet: 1000,
+      coin: 1000,  // bono inicial si es nuevo
       bank: 0,
       lastDaily: 0,
       lastWork: 0,
       lastRob: 0
     }
-    db.users[sender] = user
+    db.users[m.sender] = user
     fs.writeFileSync(dbPath, JSON.stringify(db, null, 2))
   }
 
-  // Forzar valores a número (evita NaN o undefined)
-  let wallet = Number(user.wallet) || 0
-  let bank   = Number(user.bank)   || 0
-  let total  = wallet + bank
+  let coin = Number(user.coin) || 0
+  let bank = Number(user.bank) || 0
+  let total = coin + bank
 
-  // Mensaje con interpolación correcta usando ${}
   let txt = `🌸 *Tu saldo en Waguri Coins* 🪙
 
-En mano (cartera): **${wallet}**
+En mano (coin): **${coin}**
 En banco (seguro): **${bank}**
 ─────────────────────
-Total acumulado: **${total}** ✨
+Total: **${total}** ✨
 
 ¡Sigue trabajando para aumentar tu fortuna! 🔥`
 
