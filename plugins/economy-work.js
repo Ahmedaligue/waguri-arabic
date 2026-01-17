@@ -1,5 +1,4 @@
 // by Rufino 
-
 import fs from 'fs'
 import path from 'path'
 
@@ -62,45 +61,46 @@ const trabajos = [
 let handler = async (m, { conn }) => {
   let db = JSON.parse(fs.readFileSync(dbPath, 'utf-8') || '{}')
   if (!db.users) db.users = {}
-  
-  let user = db.users[m.sender]
-  let isNew = !user
 
-  if (!user) {
-    user = db.users[m.sender] = {
+  const sender = m.sender
+  let user = db.users[sender]
+
+  const isNewUser = !user
+
+  if (isNewUser) {
+    user = {
       wallet: 1000,
       bank: 0,
       lastDaily: 0,
       lastWork: 0,
       lastRob: 0
     }
-  } else {
-    user.wallet = Number(user.wallet) || 0
-    user.bank = Number(user.bank) || 0
+    db.users[sender] = user
   }
+
+  user.wallet = Number(user.wallet) || 0
 
   const cooldown = 3600000 // 1 hora
   const now = Date.now()
 
   if (user.lastWork && now - user.lastWork < cooldown) {
-    let remaining = cooldown - (now - user.lastWork)
-    let minutes = Math.ceil(remaining / 60000)
+    const remaining = cooldown - (now - user.lastWork)
+    const minutes = Math.ceil(remaining / 60000)
     return conn.reply(m.chat, `Faltan ≈${minutes} minutos para poder trabajar otra vez.`, m)
   }
 
-  let trabajo = trabajos[Math.floor(Math.random() * trabajos.length)]
-  let ganancia = Math.floor(Math.random() * (trabajo.max - trabajo.min + 1)) + trabajo.min
+  const trabajo = trabajos[Math.floor(Math.random() * trabajos.length)]
+  const ganancia = Math.floor(Math.random() * (trabajo.max - trabajo.min + 1)) + trabajo.min
 
   user.wallet += ganancia
   user.lastWork = now
 
   fs.writeFileSync(dbPath, JSON.stringify(db, null, 2))
 
-  // ¡Aquí está la parte crítica! Usa BACKTICKS (`) y ${} correctamente
   let mensaje = `🌸 Trabajaste como **${trabajo.nombre}**
 💰 Ganaste *${ganancia} Waguri Coins* 🪙`
 
-  if (isNew) {
+  if (isNewUser) {
     mensaje += `\n\n¡Bienvenido! Te dimos **1000 Waguri Coins** de regalo ✨`
   }
 
