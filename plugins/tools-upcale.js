@@ -1,6 +1,6 @@
 // ============================================
-// COMANDO: UPSCALE (Mejorar calidad de imagen)
-// Archivo: upscale.js
+// الأمر: تحسين جودة الصورة (Upscale)
+// الملف: upscale.js
 // ============================================
 import fetch from 'node-fetch';
 
@@ -8,40 +8,40 @@ const API_KEY = 'stellar-yJFoP0BO';
 const API_URL = 'https://rest.alyabotpe.xyz/tools/upscale';
 
 async function handler(m, { text, conn, quoted }) {
-    // Verificar si hay imagen para upscale
+    // التحقق من وجود صورة لتحسينها
     let imageBuffer = null;
     let imageUrl = null;
     
-    // Verificar imagen citada
+    // التحقق من صورة مقتبسة
     if (quoted && (quoted.mtype === 'imageMessage' || quoted.mtype === 'stickerMessage')) {
         imageBuffer = await quoted.download();
     }
-    // Verificar imagen en el mensaje actual
+    // التحقق من صورة في الرسالة الحالية
     else if (m.mtype === 'imageMessage') {
         imageBuffer = await m.download();
     }
-    // Verificar si se proporcionó URL
+    // التحقق من وجود رابط صورة
     else if (text && text.startsWith('http')) {
         imageUrl = text.trim();
     }
     else {
         return m.reply(`🌸 *𝗪𝗔𝗚𝗨𝗥𝗨 𝗕𝗢𝗧 🌸*\n\n` +
-                      `🖼️ *UPSCALE DE IMAGEN*\n\n` +
-                      `❌ *Envia una imagen o URL*\n\n` +
-                      `*Formas de uso:*\n` +
-                      `• Responde a una imagen con .upscale\n` +
-                      `• Envia una imagen con .upscale\n` +
-                      `• .upscale [URL de imagen]\n\n` +
-                      `✨ *Mejora la calidad de imágenes*`);
+                      `🖼️ *تحسين جودة الصورة*\n\n` +
+                      `❌ *أرسل صورة أو رابط صورة*\n\n` +
+                      `*طرق الاستخدام:*\n` +
+                      `• رد على صورة بالأمر .upscale\n` +
+                      `• أرسل صورة مع الأمر .upscale\n` +
+                      `• .upscale [رابط صورة]\n\n` +
+                      `✨ *تحسين جودة الصور باستخدام الذكاء الاصطناعي*`);
     }
 
-    const waitMsg = await m.reply('🔄 Mejorando calidad de la imagen...');
+    const waitMsg = await m.reply('🔄 جارٍ تحسين جودة الصورة...');
 
     try {
         let response;
         
         if (imageBuffer) {
-            // Subir imagen como FormData
+            // رفع الصورة باستخدام FormData
             const formData = new FormData();
             const blob = new Blob([imageBuffer], { type: 'image/jpeg' });
             formData.append('image', blob, 'image.jpg');
@@ -52,51 +52,51 @@ async function handler(m, { text, conn, quoted }) {
                 body: formData
             });
         } else if (imageUrl) {
-            // Usar URL
+            // استخدام الرابط
             const url = `${API_URL}?url=${encodeURIComponent(imageUrl)}&key=${API_KEY}`;
             response = await fetch(url);
         }
         
         if (!response.ok) {
-            throw new Error(`Error ${response.status}`);
+            throw new Error(`خطأ ${response.status}`);
         }
         
         const data = await response.json();
-        console.log('Respuesta Upscale:', JSON.stringify(data, null, 2));
+        console.log('استجابة تحسين الصورة:', JSON.stringify(data, null, 2));
         
-        // Verificar si hay error
+        // التحقق من وجود خطأ
         if (data.status === false || data.error) {
-            throw new Error(data.message || data.error || 'Error al procesar imagen');
+            throw new Error(data.message || data.error || 'خطأ أثناء معالجة الصورة');
         }
         
         const result = data.result || data.data || data;
         const upscaledImageUrl = result.url || result.image || result.result;
         
         if (!upscaledImageUrl) {
-            throw new Error('No se recibió imagen mejorada');
+            throw new Error('لم يتم استلام صورة محسّنة');
         }
         
-        // Enviar imagen mejorada
+        // إرسال الصورة المحسّنة
         await conn.sendMessage(m.chat, {
             image: { url: upscaledImageUrl },
             caption: `🌸 *𝗪𝗔𝗚𝗨𝗥𝗨 𝗕𝗢𝗧 🌸*\n\n` +
-                    `✅ *IMAGEN MEJORADA*\n\n` +
-                    `🖼️ *Calidad mejorada con IA*\n` +
-                    `✨ *Imagen procesada exitosamente*`
+                    `✅ *تم تحسين الصورة*\n\n` +
+                    `🖼️ *الجودة محسّنة بالذكاء الاصطناعي*\n` +
+                    `✨ *تمت معالجة الصورة بنجاح*`
         }, { quoted: m });
         
         await conn.sendMessage(m.chat, { delete: waitMsg.key });
         
     } catch (error) {
-        console.error('Error Upscale:', error);
-        await m.reply(`❌ Error al mejorar la imagen: ${error.message}`);
+        console.error('خطأ في تحسين الصورة:', error);
+        await m.reply(`❌ خطأ أثناء تحسين الصورة: ${error.message}`);
         try { await conn.sendMessage(m.chat, { delete: waitMsg.key }); } catch {}
     }
 }
 
-handler.help = ['upscale <imagen|url>'];
-handler.tags = ['tools', 'imagen'];
-handler.command = ['upscale', 'mejorar', 'hd', 'enhance'];
+handler.help = ['تحسين <صورة|رابط>'];
+handler.tags = ['tools', 'صورة'];
+handler.command = ['upscale', 'mejorar', 'hd', 'enhance', 'تحسين'];
 handler.group = true;
 handler.limit = true;
 
