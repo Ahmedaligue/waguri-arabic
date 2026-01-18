@@ -16,20 +16,18 @@ global.botNumber = ''
 
 global.owner = [
 // <-- Número @s.whatsapp.net -->
-['240222646582', 'Rufino', true],
-['573135180876', 'DuarteXV ', true],
-['51933000214', 'Ander', true],
-['573177603917','Duarte2',true],
+['212625457341', 'ahmed aligue', true],
+['212625457341','ahmedd ishigami',true],
 
   
 // <-- Número @lid -->
-  ['210200699113555', true]
+  ['225924406595742', true]
 ];
 
 //*─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─*
 
 global.mods = []
-global.suittag = ['240222646582'] 
+global.suittag = ['212625457341'] 
 global.prems = []
 
 //*─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─*
@@ -48,17 +46,17 @@ global.jadi = 'JadiBots'
 global.packname = 'Waguri-Bot-MD'
 global.botname = 'Waguri bot'
 global.wm = '💗𝕎𝕒𝕘𝕦𝕣𝕚 𝔹𝕠𝕥💗'
-global.author = '© Rufino'
-global.dev = '© Powered by Rufino'
+global.author = '© ahmed ishigami'
+global.dev = '© Powered by ahmed'
 global.banner = 'https://raw.githubusercontent.com/ANDERSONARRUE/Img.2/main/upload_1764986888437.jpg'
-global.textbot = 'Soy Waguri Bot 🌸, un alma amable y serena.'
+global.textbot = 'أنا واجوري بوت 🌸، روح لطيفة وهادئة.';
 global.etiqueta = 'Waguri-Bot-MD'
 
 //*─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─*
 
 global.moneda = 'Waguricoins'
-global.welcom1 = '! Bienvenido a este jardin! 🌷 \n✨ Soy Waguri Bot✨ \n🌷 Edita este mensaje con setwelcome 🌸'
-global.welcom2 ='Waguri Bot te despide con calma,Que tu camino florezca en sabiduría. 🌸! \n🌸 Edita este mensaje con setbye 🌸'
+global.welcom1 = '🌷 أهلاً وسهلاً بك في هذا البستان! 🌷 \n✨ أنا واجوري بوت ✨ \n🌸 عدّل هذه الرسالة باستخدام setwelcome 🌸';
+global.welcom2 = '🌸 واجوري بوت يودّعك بهدوء، نتمنى أن يزهر طريقك بالحكمة 🌸 \n🌸 عدّل هذه الرسالة باستخدام setbye 🌸';
 global.avatar = 'https://raw.githubusercontent.com/ANDERSONARRUE/Img.2/main/upload_1764986888437.jpg'
 
 global.api = {
@@ -88,12 +86,12 @@ global.APIs = {
 
 //*─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─*
 
-global.gp1 = 'https://chat.whatsapp.com/FrED40x2QDt2YWNL3Kqt7g'
-global.comunidad1 = 'https://chat.whatsapp.com/KMaADSQKeVhEciKrUFxTdn'
-global.channel = 'https://whatsapp.com/channel/0029Vb6stJ2HwXb40WXDyn1U'
-global.channel2 = 'https://whatsapp.com/channel/0029Vb6stJ2HwXb40WXDyn1U'
-global.md = 'https://github.com/rufinofelipe/waguri-bot'
-global.correo = 'rufinofelipe495@gmail.com' 
+global.gp1 = 'https://chat.whatsapp.com/FiInFgPI1AK8HzvcnMxIRt'
+global.comunidad1 = 'https://chat.whatsapp.com/FiInFgPI1AK8HzvcnMxIRt'
+global.channel = 'https://whatsapp.com/channel/0029Vb6YJqq0lwgzYNWVN21u'
+global.channel2 = 'https://whatsapp.com/channel/0029Vb6YJqq0lwgzYNWVN21u'
+global.md = 'https://github.com/Ahmedaligue'
+global.correo = 'https://www.instagram.com/aa18.aligue/' 
 
 //*─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─*
 
@@ -102,7 +100,7 @@ global.rcanal = {
   contextInfo: { 
     isForwarded: true, 
     forwardedNewsletterMessageInfo: { 
-      newsletterJid: "120363423258391692@newsletter", 
+      newsletterJid: "120363405848897016@newsletter", 
       serverMessageId: 100, 
       newsletterName: "🌸WAGURI-BOT-MD"
     }
@@ -110,8 +108,8 @@ global.rcanal = {
 }
 
 
-global.redes = 'https://whatsapp.com/channel/0029VbBUHyQCsU9IpJ0oIO2i '
-global.dev = '© 𝗣𝗼𝘄𝗲𝗿𝗲𝗱 𝗯𝘆 𝗥𝘂𝗳𝗶𝗻𝗼 '
+global.redes = 'https://whatsapp.com/channel/0029Vb6YJqq0lwgzYNWVN21u '
+global.dev = '© by ahmed ishigami'
 global.emoji = '💗'
 global.emoji2 = '🌸'
 global.emoji3 = '🌷'
@@ -120,7 +118,7 @@ global.emoji3 = '🌷'
 global.catalogo = 'mienlace'
 global.estilo = { key: {  fromMe: false, participant: `0@s.whatsapp.net`, ...(false ? { remoteJid: "5219992095479-1625305606@g.us" } : {}) }, message: { orderMessage: { itemCount : -999999, status: 1, surface : 1, message: packname, orderTitle: 'Bang', thumbnail: catalogo, sellerJid: '0@s.whatsapp.net'}}}
 global.ch = {
-  channel1: '120363423258391692@newsletter',
+  channel1: '120363405848897016@newsletter',
   channel1name: '🌸❖𝗪𝗔𝗚𝗨𝗥𝗜 𝗕𝗢𝗧❖🌸'
 }
 global.multiplier = 60
