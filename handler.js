@@ -265,14 +265,12 @@ export async function handler(chatUpdate) {
                     const primaryBotId = chat.primaryBot
                     if (name !== "group-banchat.js" && chat?.isBanned && !isROwner) {
                         if (!primaryBotId || primaryBotId === botId) {
-                            const aviso = `🌸 El bot *${global.botname}* está desactivado en este grupo\n\n> 🌸 Un *administrador* puede activarlo con el comando:\n> » *${usedPrefix}bot on*`.trim()
-                            await m.reply(aviso)
+                            const aviso = `🌸 البوت *${global.botname}* معطّل في هذه المجموعة\n\n> 🌸 يمكن لأحد *المشرفين* تفعيله باستخدام الأمر:\n> » *${usedPrefix}bot on*`.trim();                            await m.reply(aviso)
                             return
                         }
                     }
                     if (m.text && user.banned && !isROwner) {
-                        const mensaje = `🌸 Estas baneado/a, no puedes usar comandos en este bot!\n\n> ● *Razón ›* ${user.bannedReason}\n\n> ● Si este Bot es cuenta oficial y tienes evidencia que respalde que este mensaje es un error, puedes exponer tu caso con un moderador.`.trim()
-                        if (!primaryBotId || primaryBotId === botId) {
+                        const mensaje = `🌸 أنت محظور، لا يمكنك استخدام الأوامر في هذا البوت!\n\n> ● *السبب ›* ${user.bannedReason}\n\n> ● إذا كان هذا البوت حسابًا رسميًا ولديك دليل يثبت أن هذه الرسالة خطأ، يمكنك عرض قضيتك على أحد المشرفين.`.trim();                        if (!primaryBotId || primaryBotId === botId) {
                             m.reply(mensaje)
                             return
                         }
@@ -390,17 +388,17 @@ export async function handler(chatUpdate) {
 
 global.dfail = (type, m, conn) => {
     const msg = {
-        rowner: `🌸 El comando *${global.comando}* solo puede ser usado por DuarteXV (Creador).`,
-        owner: `🌸 El comando *${global.comando}* solo puede ser usado por los desarrolladores del bot.`,
-        mods: `🌸 El comando *${global.comando}* solo puede ser usado por los moderadores del bot.`,
-        premium: `🌸 El comando *${global.comando}* solo puede ser usado por los usuarios premium.`,
-        group: `🌸 El comando *${global.comando}* solo puede ser usado en grupos.`,
-        private: `🌸 El comando *${global.comando}* solo puede ser usado al chat privado del bot.`,
-        admin: `🌸 El comando *${global.comando}* solo puede ser usado por los administradores del grupo.`,
-        botAdmin: `🌸 Para ejecutar el comando *${global.comando}* debo ser administrador del grupo.`,
-        restrict: `🌸 Esta caracteristica está desactivada.`,
-        unreg: `🚫 *BOT RESTRINGIDO* 🚫\n\n🔥 *Para usar comandos necesitas registrarte*\n\n🎯 *Usa .reg nombre.edad*\n\n*Ejemplo:*\n.reg ${m.name || 'IsagiDelanero'}.18\n\n🌸 *¡Regístrate para acceder a todas las funciones!*`
-    }[type]
+    rowner: `🌸 الأمر *${global.comando}* لا يمكن استخدامه إلا من قبل DuarteXV (المُنشئ).`,
+    owner: `🌸 الأمر *${global.comando}* لا يمكن استخدامه إلا من قبل مطوّري البوت.`,
+    mods: `🌸 الأمر *${global.comando}* لا يمكن استخدامه إلا من قبل مشرفي البوت.`,
+    premium: `🌸 الأمر *${global.comando}* لا يمكن استخدامه إلا من قبل المستخدمين المميزين (Premium).`,
+    group: `🌸 الأمر *${global.comando}* لا يمكن استخدامه إلا داخل المجموعات.`,
+    private: `🌸 الأمر *${global.comando}* لا يمكن استخدامه إلا في المحادثة الخاصة مع البوت.`,
+    admin: `🌸 الأمر *${global.comando}* لا يمكن استخدامه إلا من قبل مدراء المجموعة.`,
+    botAdmin: `🌸 لتنفيذ الأمر *${global.comando}* يجب أن أكون مديرًا في المجموعة.`,
+    restrict: `🌸 هذه الميزة معطّلة.`,
+    unreg: `🚫 *البوت مقيّد* 🚫\n\n🔥 *لاستخدام الأوامر يجب أن تسجّل حسابك*\n\n🎯 *استخدم الأمر: .reg الاسم.العمر*\n\n*مثال:*\n.reg ${m.name || 'IsagiDelanero'}.18\n\n🌸 *سجّل الآن للوصول إلى جميع الميزات!*`
+}[type]
     if (msg) return conn.reply(m.chat, msg, m, global.rcanal).then(_ => m.react('✖️'))
 }
 
