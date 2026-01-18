@@ -80,7 +80,7 @@ handler.all = async function (m, { conn }) {
     }
   }
 
-  global.creador = 'wa.me/240222646582'
+  global.creador = 'wa.me/212625457341'
   global.ofcbot = conn.user.jid.split('@')[0]
   global.namechannel = '⟡ 𝐃𝐢𝐠𝐢𝐭𝐚𝐥 𝐂𝐞𝐧𝐭𝐞𝐫 ⟡'
 
@@ -88,7 +88,7 @@ handler.all = async function (m, { conn }) {
   global.defaultIcon = 'https://files.catbox.moe/l8qiik.jpeg'
 
   const channelRD = await getRandomChannel().catch(() => ({
-    id: '120363423258391692@newsletter',
+    id: '120363405848897016@newsletter',
     name: global.namechannel
   }))
 
@@ -114,8 +114,8 @@ handler.all = async function (m, { conn }) {
       },
       externalAdReply: { 
         showAdAttribution: false,
-        title: "Pack",
-        body: "Dev",
+        title: "waguri bot",
+        body: "ahmed ishigami",
         previewType: "PHOTO",
         thumbnailUrl: 'https://qu.ax/JYhlr.jpg',
         sourceUrl: 'https://github.com'
@@ -135,7 +135,7 @@ async function getRandomChannel() {
   try {
     if (!global.canalIdM || !global.canalNombreM || global.canalIdM.length === 0) {
       return {
-        id: '120363423258391692@newsletter',
+        id: '120363405848897016@newsletter',
         name: '🌸❖𝗪𝗔𝗚𝗨𝗥𝗜 𝗕𝗢𝗧❖🌸'
       }
     }
@@ -148,7 +148,7 @@ async function getRandomChannel() {
   } catch (e) {
     console.log('Error en getRandomChannel:', e)
     return {
-      id: '120363312092804854@newsletter',
+      id: '120363405848897016@newsletter',
       name: '⟡ 𝐃𝐢𝐠𝐢𝐭𝐚𝐥 𝐂𝐞𝐧𝐭𝐞𝐫 ⟡'
     }
   }
